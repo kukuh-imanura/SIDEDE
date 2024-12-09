@@ -36,15 +36,7 @@ Dibuat menggunakan `Vite + Javascript`
    npm install
 ```
 
-3. Konfigurasi Tailwind
-   Tailwind sudah dikonfigurasi. Kalau ingin menambahkan class custom, edit di file tailwind.config.js.
-
-```bash
-   npm install -D tailwindcss postcss autoprefixer
-   npx tailwindcss init
-```
-
-4. Menjalankan Server Development
+3. Menjalankan Server Development
 
 ```bash
    npm run dev
