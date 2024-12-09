@@ -1,3 +1,57 @@
+# Bachelor Thesis Project
+
+<!-- Copyright (c) 2023, Imraakun Dev -->
+<!-- All rights reserved. -->
+
+Repository ini diperuntukkan untuk pengembangan `Website Admin` berbasis `React`.
+Dibuat menggunakan `Vite + Javascript`
+
+## Daftar Isi
+
+- [About Us](#about-us)
+- [Persiapan](#persiapan)
+- [More](#more)
+
+## About Us
+
+### Imraakun Dev
+
+#### Web Developer
+
+| Role              | Nama                                                       |
+| ----------------- | ---------------------------------------------------------- |
+| Hacker/Programmer | [`Kukuh Imanura`](https://www.instagram.com/kukuh-imanura) |
+
+## Persiapan
+
+1. Clone/Pull Repository
+
+```bash
+   git clone https://github.com/kukuh-imanura/SIDEDE.git
+```
+
+2. Instalasi Package
+
+```bash
+   npm install
+```
+
+3. Konfigurasi Tailwind
+   Tailwind sudah dikonfigurasi. Kalau ingin menambahkan class custom, edit di file tailwind.config.js.
+
+```bash
+   npm install -D tailwindcss postcss autoprefixer
+   npx tailwindcss init
+```
+
+4. Menjalankan Server Development
+
+```bash
+   npm run dev
+```
+
+## More
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
