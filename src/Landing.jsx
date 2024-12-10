@@ -4,13 +4,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, ButtonInstall } from './components/Button';
 import { CardProfile } from './components/Card';
 import { useRef } from 'react';
+import { useForm } from 'react-hook-form';
 
 const Landing = () => {
   const MobileMenuRef = useRef();
+  const LoginRef = useRef();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: 'all' });
 
   const toggleMenu = () => {
     const elem = MobileMenuRef.current;
     elem.classList.toggle('hidden');
+  };
+
+  const showLogin = () => {
+    LoginRef?.current.show();
+  };
+
+  const closeLogin = () => {
+    LoginRef?.current.close();
+  };
+
+  const submitLogin = (data) => {
+    console.log(data);
   };
 
   return (
@@ -18,7 +37,7 @@ const Landing = () => {
       <nav className='px-6 py-4 flex justify-between items-center sticky top-0 backdrop-blur-sm'>
         <span className='flex items-center gap-2'>
           <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
-          <p className='text-3xl font-extrabold'>UTD-PMI</p>
+          <h2>UTD-PMI</h2>
         </span>
 
         <nav className='hidden md:flex items-center'>
@@ -27,7 +46,9 @@ const Landing = () => {
           <Button link='#Contact'>Kontak</Button>
 
           <span className='space-x-2'>
-            <Button className='border-dark border'>Login</Button>
+            <Button className='border-dark border' onclick={showLogin}>
+              Login
+            </Button>
             <Button className='bg-dark text-light'>Daftar</Button>
           </span>
         </nav>
@@ -40,7 +61,7 @@ const Landing = () => {
           <div className='px-6 py-4 flex justify-between items-center'>
             <span className='flex items-center gap-2'>
               <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
-              <p className='text-3xl font-extrabold'>UTD-PMI</p>
+              <h2>UTD-PMI</h2>
             </span>
 
             <Button className={'md:hidden'} onclick={toggleMenu}>
@@ -50,13 +71,68 @@ const Landing = () => {
 
           <nav className='flex flex-col px-6 py-10 gap-2'>
             <Button className='bg-dark text-light text-center'>Daftar</Button>
-            <Button className='border-dark border mb-6 text-center'>Login</Button>
+            <Button
+              className='border-dark border mb-6 text-center'
+              onclick={() => {
+                toggleMenu();
+                showLogin();
+              }}
+            >
+              Login
+            </Button>
 
             <Button link='#MU'>Mobile Unit</Button>
             <Button link='#About'>Tentang Kami</Button>
             <Button link='#Contact'>Kontak</Button>
           </nav>
         </div>
+
+        <dialog
+          className='bg-dark/50 py-20 open:flex flex-col items-center justify-center gap-10 top-0 left-0 w-full h-screen'
+          ref={LoginRef}
+        >
+          <h1 className='text-light'>Login</h1>
+
+          <form
+            className='w-4/5 md:w-1/2 h-fit bg-light rounded-xl p-10 pt-16 flex flex-col items-center gap-6 relative'
+            onSubmit={handleSubmit(submitLogin)}
+          >
+            <Button className={'self-end absolute top-6'} onclick={closeLogin}>
+              <FontAwesomeIcon icon='fas fa-xmark' size='xl' />
+            </Button>
+
+            <span className='flex flex-col w-full'>
+              <label htmlFor='username'>Username</label>
+              <input
+                id='username'
+                type='text'
+                className='px-3 py-2 rounded-md'
+                {...register('username', {
+                  required: 'username wajib di isi',
+                })}
+              />
+              {errors.username && <p className='text-brand'>{errors.username.message}</p>}
+            </span>
+
+            <span className='flex flex-col w-full'>
+              <label htmlFor='password'>Password</label>
+              <input
+                id='password'
+                type='password'
+                className='px-3 py-2 rounded-md'
+                {...register('password', {
+                  required: 'password wajib di isi',
+                })}
+              />
+              {errors.password && <p className='text-brand'>{errors.password.message}</p>}
+            </span>
+
+            <input
+              type='submit'
+              className='px-3 py-2 rounded bg-dark text-light w-fit cursor-pointer'
+            />
+          </form>
+        </dialog>
       </nav>
 
       <section
@@ -77,32 +153,34 @@ const Landing = () => {
         <ButtonInstall />
       </section>
 
-      <section id='MU' className='py-20 flex flex-col items-center gap-10'>
+      <section id='MU' className='py-20 px-10 flex flex-col items-center gap-10'>
         <h2>Mobile Unit</h2>
 
-        <table className='table-auto'>
-          <colgroup>
-            <col className='text-center' />
-            <col />
-            <col />
-          </colgroup>
+        <div className='overflow-x-auto w-full flex justify-center'>
+          <table className='table-auto text-nowrap'>
+            <colgroup>
+              <col className='text-center' />
+              <col />
+              <col />
+            </colgroup>
 
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Lokasi</th>
-              <th>Waktu</th>
-            </tr>
-          </thead>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Lokasi</th>
+                <th>Waktu</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr>
-              <td>1.</td>
-              <td>Desa Lab. Jambu</td>
-              <td>Senin, 21 Oktober 2024</td>
-            </tr>
-          </tbody>
-        </table>
+            <tbody>
+              <tr>
+                <td>1.</td>
+                <td>Desa Lab. Jambu</td>
+                <td>Senin, 21 Oktober 2024</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section id='About' className='flex flex-col lg:flex-row items-center justify-center px-10'>
@@ -157,7 +235,7 @@ const Landing = () => {
         </article>
       </section>
 
-      <section className='pt-10 p-10'>
+      <section className='p-10'>
         <h2 className='text-center mb-10'>Tim Kami</h2>
 
         <div className='flex flex-wrap gap-12 justify-center'>
