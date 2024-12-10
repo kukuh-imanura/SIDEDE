@@ -1,4 +1,4 @@
-import colors from 'tailwindcss/colors';
+// import colors from 'tailwindcss/colors';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -8,7 +8,7 @@ export default {
       colors: {
         light: '#EEEEEE',
         dark: '#111111',
-        brand: colors.red[500],
+        brand: '#f05c5c',
       },
     },
   },

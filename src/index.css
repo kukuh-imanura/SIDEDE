@@ -4,6 +4,18 @@
 
 @layer base {
   body {
-    @apply text-dark; /* Gunakan warna default */
+    @apply text-dark bg-light; /* Gunakan warna default */
+  }
+
+  h1 {
+    @apply text-3xl sm:text-5xl font-extrabold;
+  }
+  h2 {
+    @apply text-xl sm:text-3xl font-extrabold;
+  }
+
+  th,
+  td {
+    @apply px-3 py-2 border-b border-dark;
   }
 }
