@@ -53,13 +53,11 @@ export const ButtonInstall = () => {
   );
 };
 
-export const Button = ({ children, className, link }) => {
+export const Button = ({ children, className, link, onclick }) => {
   return (
-    <>
-      <a href={link} className={`px-3 py-2 rounded ${className}`}>
-        {children}
-      </a>
-    </>
+    <a href={link} className={`px-3 py-2 rounded cursor-pointer ${className}`} onClick={onclick}>
+      {children}
+    </a>
   );
 };
 
@@ -67,4 +65,5 @@ Button.propTypes = {
   children: PropTypes.any,
   className: PropTypes.any,
   link: PropTypes.any,
+  onclick: PropTypes.any,
 };

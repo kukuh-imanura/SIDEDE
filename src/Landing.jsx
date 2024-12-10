@@ -3,8 +3,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, ButtonInstall } from './components/Button';
 import { CardProfile } from './components/Card';
+import { useRef } from 'react';
 
 const Landing = () => {
+  const MobileMenuRef = useRef();
+
+  const toggleMenu = () => {
+    const elem = MobileMenuRef.current;
+    elem.classList.toggle('hidden');
+  };
+
   return (
     <>
       <nav className='px-6 py-4 flex justify-between items-center sticky top-0 backdrop-blur-sm'>
@@ -13,10 +21,9 @@ const Landing = () => {
           <p className='text-3xl font-extrabold'>UTD-PMI</p>
         </span>
 
-        <nav>
+        <nav className='hidden md:flex items-center'>
           <Button link='#MU'>Mobile Unit</Button>
           <Button link='#About'>Tentang Kami</Button>
-          {/* <Button link='#'>Berita</Button> */}
           <Button link='#Contact'>Kontak</Button>
 
           <span className='space-x-2'>
@@ -24,6 +31,32 @@ const Landing = () => {
             <Button className='bg-dark text-light'>Daftar</Button>
           </span>
         </nav>
+
+        <Button className={'md:hidden'} onclick={toggleMenu}>
+          <FontAwesomeIcon icon={'fas fa-bars'} size='xl' />
+        </Button>
+
+        <div className='w-full h-screen bg-light absolute top-0 left-0 hidden' ref={MobileMenuRef}>
+          <div className='px-6 py-4 flex justify-between items-center'>
+            <span className='flex items-center gap-2'>
+              <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
+              <p className='text-3xl font-extrabold'>UTD-PMI</p>
+            </span>
+
+            <Button className={'md:hidden'} onclick={toggleMenu}>
+              <FontAwesomeIcon icon={'fas fa-xmark'} size='xl' />
+            </Button>
+          </div>
+
+          <nav className='flex flex-col px-6 py-10 gap-2'>
+            <Button className='bg-dark text-light text-center'>Daftar</Button>
+            <Button className='border-dark border mb-6 text-center'>Login</Button>
+
+            <Button link='#MU'>Mobile Unit</Button>
+            <Button link='#About'>Tentang Kami</Button>
+            <Button link='#Contact'>Kontak</Button>
+          </nav>
+        </div>
       </nav>
 
       <section
@@ -31,7 +64,7 @@ const Landing = () => {
         className='flex flex-col items-center justify-center h-screen -mt-20 gap-4'
       >
         <img
-          className='h-full absolute -z-10 contrast-50 blur-sm'
+          className='h-full absolute -z-10 contrast-50 blur-sm object-cover'
           src='/illustration/Blood donation-pana (1).png'
           alt='Blood Donor'
         />
@@ -44,7 +77,7 @@ const Landing = () => {
         <ButtonInstall />
       </section>
 
-      <section id='MU' className='pt-20 flex flex-col items-center gap-10'>
+      <section id='MU' className='py-20 flex flex-col items-center gap-10'>
         <h2>Mobile Unit</h2>
 
         <table className='table-auto'>
@@ -72,15 +105,15 @@ const Landing = () => {
         </table>
       </section>
 
-      <section id='About' className='h-screen flex items-center px-10'>
+      <section id='About' className='flex flex-col lg:flex-row items-center justify-center px-10'>
         <img
-          className='h-4/5'
+          className='object-cover sm:w-96'
           src='/illustration/Blood donation-amico (1).png'
           alt='Blood Donation'
         />
 
         <article className='space-y-3'>
-          <h2 className='mb-6'>Tentang Kami</h2>
+          <h2 className='mb-6 text-center lg:text-left'>Tentang Kami</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel nostrum temporibus commodi
             unde perspiciatis eos in aliquid eum pariatur error cum sint, eligendi quia incidunt
@@ -94,8 +127,8 @@ const Landing = () => {
         </article>
       </section>
 
-      <section className='px-10 flex gap-10'>
-        <article className='space-y-3'>
+      <section className='px-10 md:flex gap-10'>
+        <article className='space-y-3 pt-6'>
           <h2 className='mb-6 text-center'>Visi</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum neque incidunt,
@@ -109,7 +142,7 @@ const Landing = () => {
           </p>
         </article>
 
-        <article className='space-y-3'>
+        <article className='space-y-3 pt-6'>
           <h2 className='mb-6 text-center'>Misi</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum neque incidunt,
@@ -124,7 +157,7 @@ const Landing = () => {
         </article>
       </section>
 
-      <section className='pt-20 p-10'>
+      <section className='pt-10 p-10'>
         <h2 className='text-center mb-10'>Tim Kami</h2>
 
         <div className='flex flex-wrap gap-12 justify-center'>
@@ -138,9 +171,12 @@ const Landing = () => {
         </div>
       </section>
 
-      <footer id='Contact' className='bg-brand/25 p-10'>
-        <div className='flex justify-between'>
-          <span className='flex gap-2 h-fit items-center'>
+      <footer
+        id='Contact'
+        className='bg-brand/25 p-10 flex flex-col items-center text-center lg:text-left'
+      >
+        <div className='flex flex-col lg:flex-row justify-between gap-10 w-full'>
+          <span className='flex gap-2 h-fit items-center justify-center'>
             <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
             <p className='text-3xl font-extrabold'>UTD-PMI</p>
           </span>
@@ -181,7 +217,7 @@ const Landing = () => {
           </div>
         </div>
 
-        <hr className='my-6 border-dark/50' />
+        <hr className='my-6 border-dark/50 w-full' />
 
         <a
           className='text-center block'
