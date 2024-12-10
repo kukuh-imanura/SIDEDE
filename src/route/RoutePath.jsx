@@ -9,6 +9,7 @@ import PendonorRoute from './PendonorRoute';
 // Public
 import NotFound from '../NotFound';
 import Landing from '../Landing';
+import Daftar from '../Daftar';
 
 // Admin
 import DashboardAdmin from '../admin/DashboardAdmin';
@@ -27,6 +28,7 @@ const RoutePath = () => {
     <Routes>
       <Route element={<PublicRoute isLogin={isLogin} access={access} />}>
         <Route path='/' element={<Landing />} />
+        <Route path='/daftar' element={<Daftar />} />
       </Route>
 
       <Route element={<AdminRoute isLogin={isLogin} access={access} />}>

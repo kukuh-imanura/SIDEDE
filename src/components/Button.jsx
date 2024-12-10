@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export const ButtonInstall = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -45,7 +46,7 @@ export const ButtonInstall = () => {
   return (
     <>
       {isInstallable && (
-        <button className='bg-brand text-light px-3 py-2 rounded' onClick={handleInstallClick}>
+        <button className='bg-brand text-light px-3 py-2 rounded-md' onClick={handleInstallClick}>
           Download
         </button>
       )}
@@ -53,13 +54,23 @@ export const ButtonInstall = () => {
   );
 };
 
-export const Button = ({ children, className, link, onclick }) => {
-  return (
-    <a href={link} className={`px-3 py-2 rounded cursor-pointer ${className}`} onClick={onclick}>
+const Button = ({ children, className, link, onclick }) => {
+  return link?.includes('#') ? (
+    <a href={link} className={`px-3 py-2 rounded-md cursor-pointer ${className}`} onClick={onclick}>
       {children}
     </a>
+  ) : (
+    <Link
+      to={link}
+      className={`px-3 py-2 rounded-md cursor-pointer ${className}`}
+      onClick={onclick}
+    >
+      {children}
+    </Link>
   );
 };
+
+export default Button;
 
 Button.propTypes = {
   children: PropTypes.any,

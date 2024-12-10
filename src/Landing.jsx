@@ -1,7 +1,7 @@
 // import { ButtonInstall } from './components/btn';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, ButtonInstall } from './components/Button';
+import Button, { ButtonInstall } from './components/Button';
 import { CardProfile } from './components/Card';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 const Landing = () => {
   const MobileMenuRef = useRef();
   const LoginRef = useRef();
+
   const {
     register,
     handleSubmit,
@@ -49,7 +50,9 @@ const Landing = () => {
             <Button className='border-dark border' onclick={showLogin}>
               Login
             </Button>
-            <Button className='bg-dark text-light'>Daftar</Button>
+            <Button link={'/daftar'} className='bg-dark text-light'>
+              Daftar
+            </Button>
           </span>
         </nav>
 
@@ -81,9 +84,15 @@ const Landing = () => {
               Login
             </Button>
 
-            <Button link='#MU'>Mobile Unit</Button>
-            <Button link='#About'>Tentang Kami</Button>
-            <Button link='#Contact'>Kontak</Button>
+            <Button link='#MU' onclick={toggleMenu}>
+              Mobile Unit
+            </Button>
+            <Button link='#About' onclick={toggleMenu}>
+              Tentang Kami
+            </Button>
+            <Button link='#Contact' onclick={toggleMenu}>
+              Kontak
+            </Button>
           </nav>
         </div>
 
@@ -251,7 +260,7 @@ const Landing = () => {
 
       <footer
         id='Contact'
-        className='bg-brand/25 p-10 flex flex-col items-center text-center lg:text-left'
+        className='bg-brand/25 p-10 pt-20 flex flex-col items-center text-center lg:text-left'
       >
         <div className='flex flex-col lg:flex-row justify-between gap-10 w-full'>
           <span className='flex gap-2 h-fit items-center justify-center'>
