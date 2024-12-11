@@ -4,33 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button, { ButtonInstall } from './components/Button';
 import { CardProfile } from './components/Card';
 import { useRef } from 'react';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 
 const Landing = () => {
   const MobileMenuRef = useRef();
-  const LoginRef = useRef();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ mode: 'all' });
 
   const toggleMenu = () => {
     const elem = MobileMenuRef.current;
     elem.classList.toggle('hidden');
-  };
-
-  const showLogin = () => {
-    LoginRef?.current.show();
-  };
-
-  const closeLogin = () => {
-    LoginRef?.current.close();
-  };
-
-  const submitLogin = (data) => {
-    console.log(data);
   };
 
   return (
@@ -47,7 +28,7 @@ const Landing = () => {
           <Button link='#Contact'>Kontak</Button>
 
           <span className='space-x-2'>
-            <Button className='border-dark border' onclick={showLogin}>
+            <Button link={'/login'} className='border-dark border'>
               Login
             </Button>
             <Button link={'/daftar'} className='bg-dark text-light'>
@@ -73,14 +54,10 @@ const Landing = () => {
           </div>
 
           <nav className='flex flex-col px-6 py-10 gap-2'>
-            <Button className='bg-dark text-light text-center'>Daftar</Button>
-            <Button
-              className='border-dark border mb-6 text-center'
-              onclick={() => {
-                toggleMenu();
-                showLogin();
-              }}
-            >
+            <Button link={'/daftar'} className='bg-dark text-light text-center'>
+              Daftar
+            </Button>
+            <Button link={'/login'} className='border-dark border mb-6 text-center'>
               Login
             </Button>
 
@@ -95,53 +72,6 @@ const Landing = () => {
             </Button>
           </nav>
         </div>
-
-        <dialog
-          className='bg-dark/50 py-20 open:flex flex-col items-center justify-center gap-10 top-0 left-0 w-full h-screen'
-          ref={LoginRef}
-        >
-          <h1 className='text-light'>Login</h1>
-
-          <form
-            className='w-4/5 md:w-1/2 h-fit bg-light rounded-xl p-10 pt-16 flex flex-col items-center gap-6 relative'
-            onSubmit={handleSubmit(submitLogin)}
-          >
-            <Button className={'self-end absolute top-6'} onclick={closeLogin}>
-              <FontAwesomeIcon icon='fas fa-xmark' size='xl' />
-            </Button>
-
-            <span className='flex flex-col w-full'>
-              <label htmlFor='username'>Username</label>
-              <input
-                id='username'
-                type='text'
-                className='px-3 py-2 rounded-md'
-                {...register('username', {
-                  required: 'username wajib di isi',
-                })}
-              />
-              {errors.username && <p className='text-brand'>{errors.username.message}</p>}
-            </span>
-
-            <span className='flex flex-col w-full'>
-              <label htmlFor='password'>Password</label>
-              <input
-                id='password'
-                type='password'
-                className='px-3 py-2 rounded-md'
-                {...register('password', {
-                  required: 'password wajib di isi',
-                })}
-              />
-              {errors.password && <p className='text-brand'>{errors.password.message}</p>}
-            </span>
-
-            <input
-              type='submit'
-              className='px-3 py-2 rounded bg-dark text-light w-fit cursor-pointer'
-            />
-          </form>
-        </dialog>
       </nav>
 
       <section
@@ -260,7 +190,7 @@ const Landing = () => {
 
       <footer
         id='Contact'
-        className='bg-brand/25 p-10 pt-20 flex flex-col items-center text-center lg:text-left'
+        className='bg-dark/20 p-10 pt-20 lg:pt-10 flex flex-col items-center text-center lg:text-left'
       >
         <div className='flex flex-col lg:flex-row justify-between gap-10 w-full'>
           <span className='flex gap-2 h-fit items-center justify-center'>

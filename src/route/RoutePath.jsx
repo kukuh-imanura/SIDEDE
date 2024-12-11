@@ -19,6 +19,7 @@ import DashboardPelayanan from '../pelayanan/DashboardPelayanan';
 
 // Pendonor
 import Utama from '../pendonor/Utama';
+import Login from '../Login';
 
 const isLogin = false;
 const access = 'admin';
@@ -29,6 +30,7 @@ const RoutePath = () => {
       <Route element={<PublicRoute isLogin={isLogin} access={access} />}>
         <Route path='/' element={<Landing />} />
         <Route path='/daftar' element={<Daftar />} />
+        <Route path='/login' element={<Login />} />
       </Route>
 
       <Route element={<AdminRoute isLogin={isLogin} access={access} />}>
