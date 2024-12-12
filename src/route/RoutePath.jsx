@@ -28,6 +28,9 @@ import Riwayat from '../admin/Riwayat';
 import MobileUnit from '../admin/MobileUnit';
 import Screening from '../admin/Screening';
 import Profile from '../admin/Profile';
+import TambahPendonor from '../admin/TambahPendonor';
+import TambahHakAkses from '../admin/TambahHakAkses';
+import TambahPendaftaran from '../admin/TambahPendaftaran';
 
 const isLogin = true;
 const access = 'admin';
@@ -45,8 +48,11 @@ const RoutePath = () => {
         <Route path='/admin' element={<DashboardAdmin />} />
         <Route path='/admin/profile' element={<Profile />} />
         <Route path='/admin/pendonor' element={<Pendonor />} />
+        <Route path='/admin/pendonor/tambah' element={<TambahPendonor />} />
         <Route path='/admin/hakakses' element={<HakAkses />} />
+        <Route path='/admin/hakakses/tambah' element={<TambahHakAkses />} />
         <Route path='/admin/pendaftaran' element={<Pendaftaran />} />
+        <Route path='/admin/pendaftaran/tambah' element={<TambahPendaftaran />} />
         <Route path='/admin/pemeriksaan' element={<Pemeriksaan />} />
         <Route path='/admin/screening' element={<Screening />} />
         <Route path='/admin/riwayat' element={<Riwayat />} />

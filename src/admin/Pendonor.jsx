@@ -6,7 +6,9 @@ const Pendonor = () => {
     <div className='p-10 space-y-5'>
       <span className='flex items-center justify-between'>
         <h2>Data Pendonor</h2>
-        <Button className={'bg-dark text-light'}>Tambah</Button>
+        <Button link={'/admin/pendonor/tambah'} className={'bg-dark text-light'}>
+          Tambah
+        </Button>
       </span>
 
       <div className='overflow-x-auto w-full'>

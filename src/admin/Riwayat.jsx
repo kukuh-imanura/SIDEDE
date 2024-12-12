@@ -17,6 +17,8 @@ const Riwayat = () => {
               <th>Action</th>
               <th>Nama</th>
               <th>Donor Ke</th>
+              <th>Lokasi</th>
+              <th>Waktu</th>
               <th>Tanggal Kembali</th>
             </tr>
           </thead>
@@ -36,6 +38,8 @@ const Riwayat = () => {
               </td>
               <td>Asep</td>
               <td>4</td>
+              <td>Kantor UTD-PMI</td>
+              <td>4 Desember 2024</td>
               <td>4 Februari 2025</td>
             </tr>
           </tbody>

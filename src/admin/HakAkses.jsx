@@ -6,7 +6,9 @@ const HakAkses = () => {
     <div className='p-10 space-y-5'>
       <span className='flex items-center justify-between'>
         <h2>Data Hak Akses</h2>
-        <Button className={'bg-dark text-light'}>Tambah</Button>
+        <Button link={'/admin/hakakses/tambah'} className={'bg-dark text-light'}>
+          Tambah
+        </Button>
       </span>
 
       <div className='overflow-x-auto w-full'>

@@ -199,7 +199,7 @@ const Daftar = () => {
               className='px-3 py-2 rounded-md w-full'
               {...register('pekerjaan', { required: 'pekerjaan wajib di isi' })}
             >
-              <option value='' disabled hidden>
+              <option value='' hidden>
                 Pekerjaan
               </option>
               <option value='TP'>TNI / Polri</option>

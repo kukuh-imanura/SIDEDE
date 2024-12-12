@@ -15,6 +15,7 @@ const Pemeriksaan = () => {
             <tr>
               <th>No</th>
               <th>Action</th>
+              <th>NIK</th>
               <th>Nama Pendonor</th>
               <th>Donor Ke</th>
               <th>Nama Petugas</th>
@@ -41,6 +42,7 @@ const Pemeriksaan = () => {
                   </Button>
                 </span>
               </td>
+              <td>1111222233334444</td>
               <td>Asep</td>
               <td>4</td>
               <td>Yanto</td>

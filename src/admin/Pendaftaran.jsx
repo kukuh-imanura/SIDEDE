@@ -6,7 +6,9 @@ const Pendaftaran = () => {
     <div className='p-10 space-y-5'>
       <span className='flex items-center justify-between'>
         <h2>Data Pendaftaran</h2>
-        <Button className={'bg-dark text-light'}>Tambah</Button>
+        <Button link={'/admin/pendaftaran/tambah'} className={'bg-dark text-light'}>
+          Tambah
+        </Button>
       </span>
 
       <div className='overflow-x-auto w-full'>
@@ -15,6 +17,7 @@ const Pendaftaran = () => {
             <tr>
               <th>No</th>
               <th>Action</th>
+              <th>NIK</th>
               <th>Nama</th>
               <th>Waktu</th>
               <th>Lokasi</th>
@@ -42,6 +45,7 @@ const Pendaftaran = () => {
                   </Button>
                 </span>
               </td>
+              <td>1234111222333444</td>
               <td>Asep</td>
               <td>4 Desember 2024</td>
               <td>Kantor UTD-PMI</td>
