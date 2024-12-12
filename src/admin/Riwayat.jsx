@@ -6,10 +6,9 @@ const Riwayat = () => {
     <div className='p-10 space-y-5'>
       <span className='flex items-center justify-between'>
         <h2>Data Riwayat Donor</h2>
-        <Button className={'bg-dark text-light'}>Tambah</Button>
       </span>
 
-      <div className='overflow-x-auto w-full flex justify-center'>
+      <div className='overflow-x-auto w-full'>
         <table className='table-auto text-nowrap'>
           <thead>
             <tr>

@@ -30,7 +30,7 @@ const AdminRoute = ({ isLogin, access }) => {
         <div className='hidden lg:flex h-screen'>
           <aside className='border-r border-dark/10 h-full py-10 px-5 w-72'>
             <span className='flex gap-2 items-center w-full justify-center'>
-              <img className='w-12 h-12' src='/public/icon/icon-192x192.png' alt='Red Cross' />
+              <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
               {/* <h2 className='text-nowrap'>UTD-PMI</h2> */}
             </span>
 
@@ -59,7 +59,7 @@ const AdminRoute = ({ isLogin, access }) => {
                 <Button onclick={toggleDropdown} className={'flex items-center gap-2 text-right'}>
                   <FontAwesomeIcon icon={'fas fa-chevron-down'} />
                   <p>User</p>
-                  <img className='w-6 h-6-' src='/public/profile/man.png' alt='Profile' />
+                  <img className='w-6 h-6-' src='/profile/man.png' alt='Profile' />
                 </Button>
 
                 <menu

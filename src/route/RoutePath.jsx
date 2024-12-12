@@ -31,6 +31,10 @@ import Profile from '../admin/Profile';
 import TambahPendonor from '../admin/TambahPendonor';
 import TambahHakAkses from '../admin/TambahHakAkses';
 import TambahPendaftaran from '../admin/TambahPendaftaran';
+import TambahPemeriksaan from '../admin/TambahPemeriksaan';
+import TambahMobileUnit from '../admin/TambahMobileUnit';
+import TambahPertanyaan from '../admin/TambahPertanyaan';
+import TambahScreening from '../admin/TambahScreening';
 
 const isLogin = true;
 const access = 'admin';
@@ -54,9 +58,13 @@ const RoutePath = () => {
         <Route path='/admin/pendaftaran' element={<Pendaftaran />} />
         <Route path='/admin/pendaftaran/tambah' element={<TambahPendaftaran />} />
         <Route path='/admin/pemeriksaan' element={<Pemeriksaan />} />
+        <Route path='/admin/pemeriksaan/tambah' element={<TambahPemeriksaan />} />
         <Route path='/admin/screening' element={<Screening />} />
+        <Route path='/admin/screening/pertanyaan' element={<TambahPertanyaan />} />
+        <Route path='/admin/screening/tambah' element={<TambahScreening />} />
         <Route path='/admin/riwayat' element={<Riwayat />} />
         <Route path='/admin/mobileunit' element={<MobileUnit />} />
+        <Route path='/admin/mobileunit/tambah' element={<TambahMobileUnit />} />
       </Route>
 
       <Route element={<PelayananRoute isLogin={isLogin} access={access} />}>

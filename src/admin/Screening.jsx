@@ -6,7 +6,15 @@ const Screening = () => {
     <div className='p-10 space-y-5'>
       <span className='flex items-center justify-between'>
         <h2>Data Screening</h2>
-        <Button className={'bg-dark text-light'}>Tambah</Button>
+
+        <span className='flex gap-2'>
+          <Button link={'/admin/screening/pertanyaan'} className={'border border-dark'}>
+            Tambah Pertanyaan
+          </Button>
+          <Button link={'/admin/screening/tambah'} className={'bg-dark text-light'}>
+            Tambah Screening
+          </Button>
+        </span>
       </span>
 
       <div className='overflow-x-auto w-full flex justify-center'>

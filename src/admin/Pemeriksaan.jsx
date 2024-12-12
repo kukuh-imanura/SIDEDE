@@ -6,7 +6,9 @@ const Pemeriksaan = () => {
     <div className='p-10 space-y-5'>
       <span className='flex items-center justify-between'>
         <h2>Data Pemeriksaan Kesehatan</h2>
-        <Button className={'bg-dark text-light'}>Tambah</Button>
+        <Button link={'/admin/pemeriksaan/tambah'} className={'bg-dark text-light'}>
+          Tambah
+        </Button>
       </span>
 
       <div className='overflow-x-auto w-full'>
@@ -15,7 +17,7 @@ const Pemeriksaan = () => {
             <tr>
               <th>No</th>
               <th>Action</th>
-              <th>NIK</th>
+              <th>ID Pendaftaran</th>
               <th>Nama Pendonor</th>
               <th>Donor Ke</th>
               <th>Nama Petugas</th>
@@ -42,7 +44,7 @@ const Pemeriksaan = () => {
                   </Button>
                 </span>
               </td>
-              <td>1111222233334444</td>
+              <td>1234</td>
               <td>Asep</td>
               <td>4</td>
               <td>Yanto</td>

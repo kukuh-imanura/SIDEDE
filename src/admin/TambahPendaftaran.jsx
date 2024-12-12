@@ -24,6 +24,7 @@ const TambahPendaftaran = () => {
             className='px-3 py-2 rounded-md'
             {...register('nik', {
               required: 'NIK wajib di isi',
+              minLength: { value: 16, message: ' NIK harus 16 karakter' },
             })}
           />
           {errors.nik && <p className='text-brand'>{errors.nik.message}</p>}
@@ -70,8 +71,8 @@ const TambahPendaftaran = () => {
               <option value='' hidden>
                 Tipe Donor
               </option>
-              <option value='A'>Sukarela</option>
-              <option value='S'>Keluarga</option>
+              <option value='S'>Sukarela</option>
+              <option value='K'>Keluarga</option>
             </select>
           </span>
 
@@ -137,27 +138,57 @@ const TambahPendaftaran = () => {
 
           <div className='flex gap-6'>
             <label htmlFor='10'>
-              <input type='radio' name='penghargaan' id='10' {...register('penghargaan')} />
+              <input
+                type='radio'
+                value={'10'}
+                name='penghargaan'
+                id='10'
+                {...register('penghargaan')}
+              />
               &nbsp;10X
             </label>
 
             <label htmlFor='25'>
-              <input type='radio' name='penghargaan' id='25' {...register('penghargaan')} />
+              <input
+                type='radio'
+                value={'25'}
+                name='penghargaan'
+                id='25'
+                {...register('penghargaan')}
+              />
               &nbsp;25X
             </label>
 
             <label htmlFor='50'>
-              <input type='radio' name='penghargaan' id='50' {...register('penghargaan')} />
+              <input
+                type='radio'
+                value={'50'}
+                name='penghargaan'
+                id='50'
+                {...register('penghargaan')}
+              />
               &nbsp;50X
             </label>
 
             <label htmlFor='75'>
-              <input type='radio' name='penghargaan' id='75' {...register('penghargaan')} />
+              <input
+                type='radio'
+                value={'75'}
+                name='penghargaan'
+                id='75'
+                {...register('penghargaan')}
+              />
               &nbsp;75X
             </label>
 
             <label htmlFor='100'>
-              <input type='radio' name='penghargaan' id='100' {...register('penghargaan')} />
+              <input
+                type='radio'
+                value={'100'}
+                name='penghargaan'
+                id='100'
+                {...register('penghargaan')}
+              />
               &nbsp;100X
             </label>
           </div>

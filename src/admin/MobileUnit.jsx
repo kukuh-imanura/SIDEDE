@@ -6,7 +6,9 @@ const MobileUnit = () => {
     <div className='p-10 space-y-5'>
       <span className='flex items-center justify-between'>
         <h2>Data Mobile Unit</h2>
-        <Button className={'bg-dark text-light'}>Tambah</Button>
+        <Button link={'/admin/mobileunit/tambah'} className={'bg-dark text-light'}>
+          Tambah
+        </Button>
       </span>
 
       <div className='overflow-x-auto w-full flex justify-center'>
