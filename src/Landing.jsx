@@ -27,12 +27,9 @@ const Landing = () => {
           <Button link='#About'>Tentang Kami</Button>
           <Button link='#Contact'>Kontak</Button>
 
-          <span className='space-x-2'>
-            <Button link={'/login'} className='border-dark border'>
+          <span className='flex gap-2'>
+            <Button link={'/login'} className='bg-brand text-light'>
               Login
-            </Button>
-            <Button link={'/daftar'} className='bg-dark text-light'>
-              Daftar
             </Button>
           </span>
         </nav>
@@ -54,7 +51,7 @@ const Landing = () => {
           </div>
 
           <nav className='flex flex-col px-6 py-10 gap-2'>
-            <Button link={'/daftar'} className='bg-dark text-light text-center'>
+            <Button link={'/daftar'} className='bg-brand text-light text-center'>
               Daftar
             </Button>
             <Button link={'/login'} className='border-dark border mb-6 text-center'>
@@ -79,8 +76,8 @@ const Landing = () => {
         className='flex flex-col items-center justify-center h-screen -mt-20 gap-4'
       >
         <img
-          className='h-full absolute -z-10 contrast-50 blur-sm object-cover'
-          src='/illustration/Blood donation-pana (1).png'
+          className='h-full absolute -z-10 grayscale brightness-125 blur-sm object-cover'
+          src='/illustration/Blood donation-pana.png'
           alt='Blood Donor'
         />
 
@@ -190,7 +187,7 @@ const Landing = () => {
 
       <footer
         id='Contact'
-        className='bg-dark/20 p-10 pt-20 lg:pt-10 flex flex-col items-center text-center lg:text-left'
+        className='bg-brand/10 p-10 pt-20 lg:pt-10 flex flex-col items-center text-center lg:text-left'
       >
         <div className='flex flex-col lg:flex-row justify-between gap-10 w-full'>
           <span className='flex gap-2 h-fit items-center justify-center'>

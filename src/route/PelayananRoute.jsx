@@ -8,8 +8,8 @@ const PelayananRoute = ({ isLogin, access }) => {
 
   const redirectMap = {
     pelayanan: <Outlet />,
-    admin: <Navigate to='/dashboardadmin' />,
-    pendonor: <Navigate to='/utama' />,
+    admin: <Navigate to='/admin' />,
+    pendonor: <Navigate to='/pendonor' />,
   };
 
   return redirectMap[access] || <Navigate to='/' />;

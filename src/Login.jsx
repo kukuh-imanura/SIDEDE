@@ -17,7 +17,7 @@ const Login = () => {
     <>
       <img
         className='h-full w-full absolute -z-10 contrast-50 object-cover'
-        src='/illustration/Blood donation-pana (1).png'
+        src='/illustration/Blood donation-pana.png'
         alt='Blood Donor'
       />
 

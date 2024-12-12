@@ -8,8 +8,8 @@ const PendonorRoute = ({ isLogin, access }) => {
 
   const redirectMap = {
     pendonor: <Outlet />,
-    pelayanan: <Navigate to='/dashboardpelayanan' />,
-    admin: <Navigate to='/dashboardadmin' />,
+    pelayanan: <Navigate to='/pelayanan' />,
+    admin: <Navigate to='/admin' />,
   };
 
   return redirectMap[access] || <Navigate to='/' />;

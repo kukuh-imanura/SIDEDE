@@ -56,13 +56,17 @@ export const ButtonInstall = () => {
 
 const Button = ({ children, className, link, onclick }) => {
   return link?.includes('#') ? (
-    <a href={link} className={`px-3 py-2 rounded-md cursor-pointer ${className}`} onClick={onclick}>
+    <a
+      href={link}
+      className={`px-3 py-2 rounded-md cursor-pointer block ${className}`}
+      onClick={onclick}
+    >
       {children}
     </a>
   ) : (
     <Link
       to={link}
-      className={`px-3 py-2 rounded-md cursor-pointer ${className}`}
+      className={`px-3 py-2 rounded-md cursor-pointer block ${className}`}
       onClick={onclick}
     >
       {children}
