@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Link, Navigate, Outlet } from 'react-router-dom';
 import Button from '../components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRef } from 'react';
@@ -26,7 +26,9 @@ const PelayananRoute = ({ isLogin, access }) => {
     (
       <div>
         <nav className='px-6 py-4 w-full flex justify-between items-center sticky top-0 backdrop-blur'>
-          <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
+          <Link to={'/pelayanan'}>
+            <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
+          </Link>
 
           {/* DROPDOWN */}
           <div className='relative'>

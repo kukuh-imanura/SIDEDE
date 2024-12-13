@@ -12,12 +12,6 @@ import Landing from '../Landing';
 import Login from '../Login';
 import Daftar from '../Daftar';
 
-// Pelayanan
-import DashboardPelayanan from '../pelayanan/DashboardPelayanan';
-
-// Pendonor
-import Utama from '../pendonor/Utama';
-
 // Admin
 import DashboardAdmin from '../admin/DashboardAdmin';
 import Pendonor from '../admin/Pendonor';
@@ -35,12 +29,20 @@ import TambahDataPemeriksaan from '../admin/TambahDataPemeriksaan';
 import TambahMobileUnit from '../admin/TambahMobileUnit';
 import TambahPertanyaan from '../admin/TambahPertanyaan';
 import TambahScreening from '../admin/TambahScreening';
+
+// Pelayanan
+import DashboardPelayanan from '../pelayanan/DashboardPelayanan';
 import VerifikasiScreening from '../pelayanan/VerifikasiScreening';
 import TambahPemeriksaan from '../pelayanan/TambahPemeriksaan';
 import ProfilePelayanan from '../pelayanan/ProfilePelayanan';
 
+// Pendonor
+import Utama from '../pendonor/Utama';
+import ProfilePendonor from '../pendonor/ProfilePendonor';
+import DonorDarah from '../pendonor/DonorDarah';
+
 const isLogin = true;
-const access = 'pelayanan';
+const access = 'pendonor';
 
 const RoutePath = () => {
   return (
@@ -79,6 +81,8 @@ const RoutePath = () => {
 
       <Route element={<PendonorRoute isLogin={isLogin} access={access} />}>
         <Route path='/pendonor' element={<Utama />} />
+        <Route path='/pendonor/profile' element={<ProfilePendonor />} />
+        <Route path='/pendonor/donor' element={<DonorDarah />} />
       </Route>
 
       <Route path='*' element={<NotFound />} />

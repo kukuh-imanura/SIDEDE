@@ -15,7 +15,15 @@ const Profile = () => {
 
   return (
     <div className='p-10 flex flex-col items-center gap-5'>
-      <img className='w-48' src='/profile/man.png' alt='Profile' />
+      <div className='flex flex-col items-center'>
+        <img className='w-48' src='/profile/man.png' alt='Profile' />
+        <input
+          id='foto'
+          type='file'
+          className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border'
+          {...register('foto')}
+        />
+      </div>
 
       <form onSubmit={handleSubmit(ubahHakAkses)} className='flex flex-col gap-2' action=''>
         <span className='flex justify-between items-center gap-2'>
