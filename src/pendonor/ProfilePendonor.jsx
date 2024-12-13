@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import Button from '../components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ProfilePendonor = () => {
   const {
@@ -14,14 +15,21 @@ const ProfilePendonor = () => {
   return (
     <div className='p-10'>
       <form onSubmit={handleSubmit(ubahProfile)} className='flex flex-col gap-2 items-center'>
-        <div className='flex flex-col items-center text-center'>
+        <div className='flex flex-col items-center justify-center relative'>
           <img className='w-48' src='/profile/man.png' alt='Profile' />
-          <input
-            id='foto'
-            type='file'
-            className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark w-fit'
-            {...register('foto')}
-          />
+
+          <span className='absolute bottom-2 right-3 bg-dark rounded-full p-2 shadow-md'>
+            <input
+              id='foto'
+              type='file'
+              className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark hidden'
+              {...register('foto')}
+            />
+
+            <label htmlFor='foto' className='select-none cursor-pointer text-light'>
+              <FontAwesomeIcon icon={'fas fa-pencil'} size='xl' />
+            </label>
+          </span>
         </div>
 
         <h2 className='my-5 text-center'>Hak Akses</h2>
