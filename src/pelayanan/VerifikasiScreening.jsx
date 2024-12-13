@@ -1,37 +1,27 @@
 import { useForm } from 'react-hook-form';
 
-const TambahScreening = () => {
+const VerifikasiScreening = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: 'all' });
 
-  const tambahScreening = (data) => {
+  const verifikasiScreening = (data) => {
     console.log(data);
   };
 
   return (
     <div className='p-10 flex flex-col gap-5 items-center'>
-      <h2>Tambah Data Screening</h2>
+      <hgroup className='text-center'>
+        <h2>Verifikasi Screening</h2>
+        <p>Asep 1234</p>
+      </hgroup>
 
       <form
-        onSubmit={handleSubmit(tambahScreening)}
+        onSubmit={handleSubmit(verifikasiScreening)}
         className='flex flex-col gap-2 items-center w-full'
       >
-        <span className='flex items-center gap-2'>
-          <label htmlFor='idpendaftaran'>ID Pendaftaran</label>
-          <input
-            id='idpendaftaran'
-            type='text'
-            className='px-3 py-2 rounded-md'
-            {...register('idpendaftaran', {
-              required: 'wajib di isi',
-            })}
-          />
-          {errors.idpendaftaran && <p className='text-brand'>{errors.idpendaftaran.message}</p>}
-        </span>
-
         {/* <div className='overflow-x-auto w-full'> */}
         <table className='text-nowrap'>
           <thead>
@@ -39,6 +29,7 @@ const TambahScreening = () => {
               <th>Pertanyaan</th>
               <th>Ya</th>
               <th>Tidak</th>
+              <th>Status</th>
             </tr>
           </thead>
 
@@ -65,6 +56,7 @@ const TambahScreening = () => {
                   })}
                 />
               </td>
+              <td>Valid</td>
             </tr>
           </tbody>
         </table>
@@ -79,4 +71,4 @@ const TambahScreening = () => {
   );
 };
 
-export default TambahScreening;
+export default VerifikasiScreening;

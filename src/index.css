@@ -16,6 +16,10 @@
 
   th,
   td {
-    @apply px-3 py-2 border-b border-dark;
+    @apply px-3 py-2;
+  }
+
+  tr {
+    @apply border-b border-dark;
   }
 }

@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-const TambahPemeriksaan = () => {
+const TambahDataPemeriksaan = () => {
   const {
     register,
     handleSubmit,
@@ -148,4 +148,4 @@ const TambahPemeriksaan = () => {
   );
 };
 
-export default TambahPemeriksaan;
+export default TambahDataPemeriksaan;

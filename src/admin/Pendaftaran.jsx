@@ -17,6 +17,7 @@ const Pendaftaran = () => {
             <tr>
               <th>No</th>
               <th>Action</th>
+              <th>ID Pendaftaran</th>
               <th>NIK</th>
               <th>Nama</th>
               <th>Waktu</th>
@@ -45,9 +46,10 @@ const Pendaftaran = () => {
                   </Button>
                 </span>
               </td>
+              <td>1234</td>
               <td>1234111222333444</td>
               <td>Asep</td>
-              <td>4 Desember 2024</td>
+              <td>08:00, 4 Desember 2024</td>
               <td>Kantor UTD-PMI</td>
               <td>Sukarela</td>
               <td>4</td>
