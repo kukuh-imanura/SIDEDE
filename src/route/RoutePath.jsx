@@ -37,6 +37,7 @@ import TambahPertanyaan from '../admin/TambahPertanyaan';
 import TambahScreening from '../admin/TambahScreening';
 import VerifikasiScreening from '../pelayanan/VerifikasiScreening';
 import TambahPemeriksaan from '../pelayanan/TambahPemeriksaan';
+import ProfilePelayanan from '../pelayanan/ProfilePelayanan';
 
 const isLogin = true;
 const access = 'pelayanan';
@@ -73,6 +74,7 @@ const RoutePath = () => {
         <Route path='/pelayanan' element={<DashboardPelayanan />} />
         <Route path='/pelayanan/screening' element={<VerifikasiScreening />} />
         <Route path='/pelayanan/pemeriksaan' element={<TambahPemeriksaan />} />
+        <Route path='/pelayanan/profile' element={<ProfilePelayanan />} />
       </Route>
 
       <Route element={<PendonorRoute isLogin={isLogin} access={access} />}>

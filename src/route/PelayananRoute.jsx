@@ -40,7 +40,7 @@ const PelayananRoute = ({ isLogin, access }) => {
               ref={menuRef}
               className='absolute w-full right-0 bg-light rounded-b-md shadow py-2 hidden'
             >
-              <Button link={'admin/profile'} className={'text-right'}>
+              <Button link={'pelayanan/profile'} className={'text-right'}>
                 Account
               </Button>
               <Button className={'text-right'}>Logout</Button>
