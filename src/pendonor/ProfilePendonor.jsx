@@ -14,12 +14,12 @@ const ProfilePendonor = () => {
   return (
     <div className='p-10'>
       <form onSubmit={handleSubmit(ubahProfile)} className='flex flex-col gap-2 items-center'>
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center text-center'>
           <img className='w-48' src='/profile/man.png' alt='Profile' />
           <input
             id='foto'
             type='file'
-            className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border'
+            className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark'
             {...register('foto')}
           />
         </div>
