@@ -19,7 +19,7 @@ const ProfilePendonor = () => {
           <input
             id='foto'
             type='file'
-            className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark'
+            className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark w-fit'
             {...register('foto')}
           />
         </div>
