@@ -274,6 +274,7 @@ const ProfilePendonor = () => {
         <div className='flex gap-2 mt-5'>
           <input
             type='submit'
+            value={'Ubah'}
             className='px-3 py-2 rounded border border-dark w-fit cursor-pointer'
           />
 
