@@ -25,7 +25,7 @@ const PendonorRoute = ({ isLogin, access }) => {
   return (
     (
       <div>
-        <nav className='px-6 py-4 w-full flex justify-between items-center sticky top-0 backdrop-blur'>
+        <nav className='px-6 py-4 w-full flex justify-between items-center sticky top-0 bg-light z-10'>
           <Link to={'/pendonor'}>
             <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
           </Link>

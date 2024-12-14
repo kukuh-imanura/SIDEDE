@@ -62,12 +62,13 @@ const ProfilePelayanan = () => {
         {errors.password && <p className='text-brand'>{errors.password.message}</p>}
 
         <span className='flex gap-2 justify-center mt-4'>
+          <Button className={'bg-brand text-light'}>Hapus</Button>
+
           <input
             type='submit'
             value={'Ubah'}
             className='px-3 py-2 rounded border border-dark cursor-pointer'
           />
-          <Button className={'bg-brand text-light'}>Hapus</Button>
         </span>
       </form>
     </div>

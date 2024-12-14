@@ -29,7 +29,7 @@ const PelayananRoute = ({ isLogin, access }) => {
         <NotFound className={'lg:hidden'} />
 
         <div className='hidden lg:block'>
-          <nav className='px-6 py-4 w-full flex justify-between items-center sticky top-0 backdrop-blur'>
+          <nav className='px-6 py-4 w-full flex justify-between items-center sticky top-0 bg-light'>
             <Link to={'/pelayanan'}>
               <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
             </Link>

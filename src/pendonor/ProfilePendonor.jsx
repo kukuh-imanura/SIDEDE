@@ -280,13 +280,13 @@ const ProfilePendonor = () => {
         </div>
 
         <div className='flex gap-2 mt-5'>
+          <Button className={'bg-brand text-light'}>Hapus</Button>
+
           <input
             type='submit'
             value={'Ubah'}
             className='px-3 py-2 rounded border border-dark w-fit cursor-pointer'
           />
-
-          <Button className={'bg-brand text-light'}>Hapus</Button>
         </div>
       </form>
     </div>

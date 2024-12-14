@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../components/Button';
 
-const Screening = () => {
+const DataScreening = () => {
   return (
     <div className='p-10 space-y-5'>
       <span className='flex items-center justify-between'>
@@ -77,4 +77,4 @@ const Screening = () => {
   );
 };
 
-export default Screening;
+export default DataScreening;

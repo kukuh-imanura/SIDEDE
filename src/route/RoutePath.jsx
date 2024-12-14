@@ -20,7 +20,7 @@ import Pendaftaran from '../admin/Pendaftaran';
 import Pemeriksaan from '../admin/Pemeriksaan';
 import Riwayat from '../admin/Riwayat';
 import MobileUnit from '../admin/MobileUnit';
-import Screening from '../admin/Screening';
+import DataScreening from '../admin/DataScreening';
 import Profile from '../admin/Profile';
 import TambahPendonor from '../admin/TambahPendonor';
 import TambahHakAkses from '../admin/TambahHakAkses';
@@ -40,6 +40,7 @@ import ProfilePelayanan from '../pelayanan/ProfilePelayanan';
 import Utama from '../pendonor/Utama';
 import ProfilePendonor from '../pendonor/ProfilePendonor';
 import DonorDarah from '../pendonor/DonorDarah';
+import Screening from '../pendonor/Screening';
 
 const isLogin = true;
 const access = 'pendonor';
@@ -64,7 +65,7 @@ const RoutePath = () => {
         <Route path='/admin/pendaftaran/tambah' element={<TambahPendaftaran />} />
         <Route path='/admin/pemeriksaan' element={<Pemeriksaan />} />
         <Route path='/admin/pemeriksaan/tambah' element={<TambahDataPemeriksaan />} />
-        <Route path='/admin/screening' element={<Screening />} />
+        <Route path='/admin/screening' element={<DataScreening />} />
         <Route path='/admin/screening/pertanyaan' element={<TambahPertanyaan />} />
         <Route path='/admin/screening/tambah' element={<TambahScreening />} />
         <Route path='/admin/riwayat' element={<Riwayat />} />
@@ -83,6 +84,7 @@ const RoutePath = () => {
         <Route path='/pendonor' element={<Utama />} />
         <Route path='/pendonor/profile' element={<ProfilePendonor />} />
         <Route path='/pendonor/donor' element={<DonorDarah />} />
+        <Route path='/pendonor/screening' element={<Screening />} />
       </Route>
 
       <Route path='*' element={<NotFound />} />
