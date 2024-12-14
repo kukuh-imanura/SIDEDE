@@ -139,7 +139,7 @@ const DonorDarah = () => {
           </select>
         </span>
 
-        <div className='lg:flex w-full gap-2 md:gap-6'>
+        <div className='flex flex-col lg:flex-row w-full gap-2 md:gap-6'>
           <span className='flex flex-col w-full'>
             <label htmlFor='kecamatan'>Kecamatan</label>
             <input

@@ -147,12 +147,13 @@ const ProfilePendonor = () => {
             />
             {errors.tempatLhr && <p className='text-brand'>{errors.tempatLhr.message}</p>}
           </span>
+
           <span className='flex flex-col w-full'>
             <label htmlFor='tglLhr'>Tanggal Lahir</label>
             <input
               id='tglLhr'
               type='date'
-              className='px-3 py-2 rounded-md'
+              className='px-3 py-2 rounded-md w-full bg-white'
               {...register('tglLhr', {
                 required: 'wajib di isi',
               })}
@@ -182,7 +183,7 @@ const ProfilePendonor = () => {
           </select>
         </span>
 
-        <div className='lg:flex w-full gap-2 md:gap-6'>
+        <div className='flex flex-col lg:flex-row w-full gap-2 md:gap-6'>
           <span className='flex flex-col w-full'>
             <label htmlFor='kecamatan'>Kecamatan</label>
             <input
@@ -195,6 +196,7 @@ const ProfilePendonor = () => {
             />
             {errors.kecamatan && <p className='text-brand'>{errors.kecamatan.message}</p>}
           </span>
+
           <span className='flex flex-col w-full'>
             <label htmlFor='kelurahan'>Kelurahan</label>
             <input
@@ -207,6 +209,7 @@ const ProfilePendonor = () => {
             />
             {errors.kelurahan && <p className='text-brand'>{errors.kelurahan.message}</p>}
           </span>
+
           <span className='flex flex-col w-full'>
             <label htmlFor='kota'>Kota</label>
             <input
