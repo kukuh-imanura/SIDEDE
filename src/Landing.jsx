@@ -45,7 +45,7 @@ const Landing = () => {
               <h2>UTD-PMI</h2>
             </span>
 
-            <Button className={'md:hidden'} onclick={toggleMenu}>
+            <Button onclick={toggleMenu}>
               <FontAwesomeIcon icon={'fas fa-xmark'} size='xl' />
             </Button>
           </div>

@@ -41,8 +41,10 @@ import Utama from '../pendonor/Utama';
 import ProfilePendonor from '../pendonor/ProfilePendonor';
 import DonorDarah from '../pendonor/DonorDarah';
 import Screening from '../pendonor/Screening';
+import ScreeningPendonor from '../pendonor/ScreeningPendonor';
+import HasilPemeriksaan from '../pendonor/HasilPemeriksaan';
 
-const isLogin = true;
+const isLogin = 1;
 const access = 'pendonor';
 
 const RoutePath = () => {
@@ -85,6 +87,8 @@ const RoutePath = () => {
         <Route path='/pendonor/profile' element={<ProfilePendonor />} />
         <Route path='/pendonor/donor' element={<DonorDarah />} />
         <Route path='/pendonor/screening' element={<Screening />} />
+        <Route path='/pendonor/datascreening' element={<ScreeningPendonor />} />
+        <Route path='/pendonor/pemeriksaan' element={<HasilPemeriksaan />} />
       </Route>
 
       <Route path='*' element={<NotFound />} />

@@ -11,15 +11,18 @@ const Utama = () => {
         </Button>
       </span>
 
-      <div className='w-full overflow-auto'>
-        <table className='table-auto text-nowrap mx-auto'>
+      <div className='overflow-x-auto w-full'>
+        <table className='table-auto text-nowrap'>
           <thead>
             <tr>
               <th>No</th>
-              <th>Nama</th>
+              <th>Action</th>
+              <th>Status</th>
+              <th>ID Pendaftaran</th>
               <th>Donor Ke</th>
-              <th>Lokasi</th>
               <th>Waktu</th>
+              <th>Lokasi</th>
+              <th>Tipe</th>
               <th>Tanggal Kembali</th>
             </tr>
           </thead>
@@ -27,10 +30,22 @@ const Utama = () => {
           <tbody>
             <tr>
               <td>1.</td>
-              <td>Asep</td>
+              <td>
+                <span className='flex gap-1'>
+                  <Button link={'/pendonor/datascreening'} className={'border border-dark'}>
+                    <FontAwesomeIcon icon={'fas fa-check-double'} />
+                  </Button>
+                  <Button link={'/pendonor/pemeriksaan'} className={'border border-dark'}>
+                    <FontAwesomeIcon icon={'fas fa-stethoscope'} />
+                  </Button>
+                </span>
+              </td>
+              <td>Diproses</td>
+              <td>1234</td>
               <td>4</td>
+              <td>08:00, 4 Desember 2024</td>
               <td>Kantor UTD-PMI</td>
-              <td>4 Desember 2024</td>
+              <td>Sukarela</td>
               <td>4 Februari 2025</td>
             </tr>
           </tbody>
