@@ -103,12 +103,13 @@ const DonorDarah = () => {
             />
             {errors.tempatLhr && <p className='text-brand'>{errors.tempatLhr.message}</p>}
           </span>
+
           <span className='flex flex-col w-full'>
             <label htmlFor='tglLhr'>Tanggal Lahir</label>
             <input
               id='tglLhr'
               type='date'
-              className='px-3 py-2 rounded-md'
+              className='px-3 py-2 rounded-md w-full bg-white'
               {...register('tglLhr', {
                 required: 'wajib di isi',
               })}
@@ -122,7 +123,7 @@ const DonorDarah = () => {
           <select
             name='pekerjaan'
             id='pekerjaan'
-            className='px-3 py-2 rounded-md w-full'
+            className='px-3 py-2 rounded-md w-full bg-white'
             {...register('pekerjaan', { required: 'pekerjaan wajib di isi' })}
           >
             <option value='' hidden>
