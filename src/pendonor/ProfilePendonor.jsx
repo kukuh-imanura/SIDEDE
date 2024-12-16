@@ -12,12 +12,19 @@ const ProfilePendonor = () => {
 
   const [isPass, setIsPass] = useState(true);
 
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const handleEnable = () => {
+    setIsDisabled(false);
+  };
+
   const showPassword = () => {
     setIsPass(!isPass);
   };
 
   const ubahProfile = (data) => {
     console.log(data);
+    setIsDisabled(true);
   };
   return (
     <div className='p-10'>
@@ -27,6 +34,7 @@ const ProfilePendonor = () => {
 
           <span className='absolute bottom-2 right-3 bg-dark rounded-full p-2 shadow-md'>
             <input
+              disabled={isDisabled}
               id='foto'
               type='file'
               className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark hidden'
@@ -45,9 +53,10 @@ const ProfilePendonor = () => {
           <span className='flex flex-col w-full'>
             <label htmlFor='username'>Username</label>
             <input
+              disabled={isDisabled}
               id='username'
               type='text'
-              className='px-3 py-2 rounded-md'
+              className='px-3 py-2 rounded-md border'
               {...register('username', {
                 required: 'username wajib di isi',
               })}
@@ -60,9 +69,10 @@ const ProfilePendonor = () => {
 
             <div className='w-full flex items-center relative'>
               <input
+                disabled={isDisabled}
                 id='password'
                 type={`${isPass ? 'password' : 'text'}`}
-                className='px-3 py-2 rounded-md w-full'
+                className='px-3 py-2 rounded-md w-full border'
                 {...register('password', {
                   required: 'password wajib di isi',
                   minLength: { value: 8, message: ' minimal 8 karakter' },
@@ -86,9 +96,10 @@ const ProfilePendonor = () => {
           <span className='flex flex-col w-full'>
             <label htmlFor='nik'>NIK</label>
             <input
+              disabled={isDisabled}
               id='nik'
               type='text'
-              className='px-3 py-2 rounded-md'
+              className='px-3 py-2 rounded-md border'
               {...register('nik', {
                 required: 'NIK wajib di isi',
                 minLength: { value: 16, message: 'NIK harus 16 karakter' },
@@ -99,9 +110,10 @@ const ProfilePendonor = () => {
           <span className='flex flex-col w-full'>
             <label htmlFor='nkd'>Nomor Kartu Donor</label>
             <input
+              disabled={isDisabled}
               id='nkd'
               type='text'
-              className='px-3 py-2 rounded-md'
+              className='px-3 py-2 rounded-md border'
               {...register('nkd', {
                 required: 'wajib di isi',
               })}
@@ -113,9 +125,10 @@ const ProfilePendonor = () => {
         <span className='flex flex-col w-full'>
           <label htmlFor='nama'>Nama</label>
           <input
+            disabled={isDisabled}
             id='nama'
             type='text'
-            className='px-3 py-2 rounded-md'
+            className='px-3 py-2 rounded-md border'
             {...register('nama', {
               required: 'nama wajib di isi',
             })}
@@ -129,6 +142,7 @@ const ProfilePendonor = () => {
           <div className='flex gap-2 md:gap-6'>
             <label htmlFor='idlaki'>
               <input
+                disabled={isDisabled}
                 type='radio'
                 value='l'
                 id='idlaki'
@@ -139,6 +153,7 @@ const ProfilePendonor = () => {
 
             <label htmlFor='idperempuan'>
               <input
+                disabled={isDisabled}
                 type='radio'
                 value='p'
                 id='idperempuan'
@@ -155,9 +170,10 @@ const ProfilePendonor = () => {
           <span className='flex flex-col w-full'>
             <label htmlFor='tempatLhr'>Tempat Lahir</label>
             <input
+              disabled={isDisabled}
               id='tempatLhr'
               type='text'
-              className='px-3 py-2 rounded-md'
+              className='px-3 py-2 rounded-md border'
               {...register('tempatLhr', {
                 required: 'wajib di isi',
               })}
@@ -168,9 +184,10 @@ const ProfilePendonor = () => {
           <span className='flex flex-col w-full'>
             <label htmlFor='tglLhr'>Tanggal Lahir</label>
             <input
+              disabled={isDisabled}
               id='tglLhr'
               type='date'
-              className='px-3 py-2 rounded-md w-full bg-white'
+              className='px-3 py-2 rounded-md w-full bg-white disabled:bg-light border'
               {...register('tglLhr', {
                 required: 'wajib di isi',
               })}
@@ -182,9 +199,10 @@ const ProfilePendonor = () => {
         <span className='w-full'>
           <label htmlFor='pekerjaan'>Pekerjaan</label>
           <select
+            disabled={isDisabled}
             name='pekerjaan'
             id='pekerjaan'
-            className='px-3 py-2 rounded-md w-full bg-white'
+            className='px-3 py-2 rounded-md w-full bg-white disabled:bg-light border'
             {...register('pekerjaan', { required: 'pekerjaan wajib di isi' })}
           >
             <option value='' hidden>
@@ -204,9 +222,10 @@ const ProfilePendonor = () => {
           <span className='flex flex-col w-full'>
             <label htmlFor='kecamatan'>Kecamatan</label>
             <input
+              disabled={isDisabled}
               id='kecamatan'
               type='text'
-              className='px-3 py-2 rounded-md'
+              className='px-3 py-2 rounded-md border'
               {...register('kecamatan', {
                 required: 'kecamatan wajib di isi',
               })}
@@ -217,9 +236,10 @@ const ProfilePendonor = () => {
           <span className='flex flex-col w-full'>
             <label htmlFor='kelurahan'>Kelurahan</label>
             <input
+              disabled={isDisabled}
               id='kelurahan'
               type='text'
-              className='px-3 py-2 rounded-md'
+              className='px-3 py-2 rounded-md border'
               {...register('kelurahan', {
                 required: 'kelurahan wajib di isi',
               })}
@@ -230,9 +250,10 @@ const ProfilePendonor = () => {
           <span className='flex flex-col w-full'>
             <label htmlFor='kota'>Kota</label>
             <input
+              disabled={isDisabled}
               id='kota'
               type='text'
-              className='px-3 py-2 rounded-md'
+              className='px-3 py-2 rounded-md border'
               {...register('kota', {
                 required: 'kota wajib di isi',
               })}
@@ -246,9 +267,10 @@ const ProfilePendonor = () => {
             <span className='flex flex-col w-full'>
               <label htmlFor='alamat'>Alamat</label>
               <textarea
+                disabled={isDisabled}
                 id='alamat'
                 type='text'
-                className='px-3 py-2 rounded-md'
+                className='px-3 py-2 rounded-md border'
                 {...register('alamat', {
                   required: 'alamat wajib di isi',
                 })}
@@ -259,9 +281,10 @@ const ProfilePendonor = () => {
             <span className='flex flex-col w-full'>
               <label htmlFor='telpRmh'>Telpon Rumah</label>
               <input
+                disabled={isDisabled}
                 id='telpRmh'
                 type='text'
-                className='px-3 py-2 rounded-md'
+                className='px-3 py-2 rounded-md border'
                 {...register('telpRmh', {
                   required: 'wajib di isi',
                 })}
@@ -274,9 +297,10 @@ const ProfilePendonor = () => {
             <span className='flex flex-col w-full'>
               <label htmlFor='almKantor'>Alamat Kantor</label>
               <textarea
+                disabled={isDisabled}
                 id='almKantor'
                 type='text'
-                className='px-3 py-2 rounded-md'
+                className='px-3 py-2 rounded-md border'
                 {...register('almKantor', {
                   required: 'wajib di isi',
                 })}
@@ -287,9 +311,10 @@ const ProfilePendonor = () => {
             <span className='flex flex-col w-full'>
               <label htmlFor='telpKntr'>Telpon Kantor</label>
               <input
+                disabled={isDisabled}
                 id='telpKntr'
                 type='text'
-                className='px-3 py-2 rounded-md'
+                className='px-3 py-2 rounded-md border'
                 {...register('telpKntr', {
                   required: 'wajib di isi',
                 })}
@@ -299,15 +324,19 @@ const ProfilePendonor = () => {
           </div>
         </div>
 
-        <div className='flex gap-2 mt-5'>
+        <div className={`flex gap-2 mt-5 ${!isDisabled && 'hidden'}`}>
           <Button className={'bg-brand text-light'}>Hapus</Button>
-
-          <input
-            type='submit'
-            value={'Ubah'}
-            className='px-3 py-2 rounded border border-dark w-fit cursor-pointer'
-          />
+          <Button onclick={handleEnable} className={'border border-dark'}>
+            Ubah
+          </Button>
         </div>
+
+        <input
+          type='submit'
+          className={`px-3 py-2 rounded border border-dark w-fit cursor-pointer mt-5 ${
+            isDisabled && 'hidden'
+          }`}
+        />
       </form>
     </div>
   );

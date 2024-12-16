@@ -12,7 +12,7 @@ const Utama = () => {
       </span>
 
       <div className='overflow-x-auto w-full'>
-        <table className='table-auto text-nowrap'>
+        <table className='table-auto text-nowrap mx-auto'>
           <thead>
             <tr>
               <th>No</th>

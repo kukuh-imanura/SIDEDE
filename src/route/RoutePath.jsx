@@ -45,7 +45,7 @@ import ScreeningPendonor from '../pendonor/ScreeningPendonor';
 import HasilPemeriksaan from '../pendonor/HasilPemeriksaan';
 
 const isLogin = true;
-const access = 'admin';
+const access = 'pendonor';
 
 const RoutePath = () => {
   return (

@@ -2,7 +2,7 @@ import { CardStatic } from '../components/Card';
 
 const DashboardAdmin = () => {
   return (
-    <div className='p-10 flex gap-6 flex-wrap justify-center'>
+    <div className='p-10 flex gap-10 flex-wrap justify-center'>
       <CardStatic icon={'fas fa-user'} tittle={'34'} subtitle={'Pendonnor'} />
       <CardStatic icon={'fas fa-lock'} tittle={'34'} subtitle={'Hak Akses'} />
       <CardStatic icon={'fas fa-pen'} tittle={'34'} subtitle={'Pendaftaran'} />

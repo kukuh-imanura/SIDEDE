@@ -6,7 +6,7 @@ const HasilPemeriksaan = () => {
         <p>ID 1234</p>
       </hgroup>
 
-      <div className='w-full'>
+      <div className='w-fit lg:w-1/2 mx-auto'>
         <table className='w-full'>
           <tbody className='*:border-none'>
             <tr>

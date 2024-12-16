@@ -13,47 +13,60 @@ const ProfilePelayanan = () => {
 
   const [isPass, setIsPass] = useState(true);
 
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const handleEnable = () => {
+    setIsDisabled(false);
+  };
+
   const showPassword = () => {
     setIsPass(!isPass);
   };
 
   const ubahHakAkses = (data) => {
     console.log(data);
+    setIsDisabled(true);
   };
 
   return (
     <div className='p-10 flex flex-col items-center gap-5'>
-      <div className='flex flex-col items-center justify-center relative'>
-        <img className='w-48' src='/profile/man.png' alt='Profile' />
+      <form
+        onSubmit={handleSubmit(ubahHakAkses)}
+        className='flex flex-col gap-2 items-center'
+        action=''
+      >
+        <div className='flex flex-col items-center justify-center relative w-fit'>
+          <img className='w-48' src='/profile/man.png' alt='Profile' />
 
-        <span className='absolute bottom-2 right-3 bg-dark rounded-full p-2 shadow-md'>
-          <input
-            id='foto'
-            type='file'
-            className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark hidden'
-            {...register('foto')}
-          />
+          <span className='absolute bottom-2 right-3 bg-dark rounded-full p-2 shadow-md'>
+            <input
+              id='foto'
+              type='file'
+              className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark hidden'
+              disabled={isDisabled}
+              {...register('foto')}
+            />
 
-          <label htmlFor='foto' className='select-none cursor-pointer text-light'>
-            <FontAwesomeIcon icon={'fas fa-pencil'} size='xl' />
-          </label>
-        </span>
-      </div>
+            <label htmlFor='foto' className='select-none cursor-pointer text-light'>
+              <FontAwesomeIcon icon={'fas fa-pencil'} size='xl' />
+            </label>
+          </span>
+        </div>
 
-      <form onSubmit={handleSubmit(ubahHakAkses)} className='flex flex-col gap-2' action=''>
-        <span className='flex justify-between items-center gap-2'>
+        <span className='flex justify-between items-center gap-2 w-full'>
           <label htmlFor='username'>Username</label>
           <input
             id='username'
-            className='px-3 py-2 rounded-md'
+            className='px-3 py-2 rounded-md border'
             type='text'
             placeholder='user'
+            disabled={isDisabled}
             {...register('username', { required: 'username wajib di isi' })}
           />
         </span>
         {errors.username && <p className='text-brand'>{errors.username.message}</p>}
 
-        <span className='flex justify-between items-center gap-2'>
+        <span className='flex justify-between items-center gap-2 w-full'>
           <label htmlFor='password'>Password</label>
 
           <div className='flex items-center relative'>
@@ -61,7 +74,8 @@ const ProfilePelayanan = () => {
               id='password'
               placeholder='****'
               type={`${isPass ? 'password' : 'text'}`}
-              className='px-3 py-2 rounded-md w-full'
+              className='px-3 py-2 rounded-md w-full border'
+              disabled={isDisabled}
               {...register('password', {
                 required: 'password wajib di isi',
                 minLength: { value: 8, message: ' minimal 8 karakter' },
@@ -77,15 +91,19 @@ const ProfilePelayanan = () => {
         </span>
         {errors.password && <p className='text-brand'>{errors.password.message}</p>}
 
-        <span className='flex gap-2 justify-center mt-4'>
+        <span className={`flex gap-2 justify-center mt-4 ${!isDisabled && 'hidden'}`}>
           <Button className={'bg-brand text-light'}>Hapus</Button>
-
-          <input
-            type='submit'
-            value={'Ubah'}
-            className='px-3 py-2 rounded border border-dark cursor-pointer'
-          />
+          <Button onclick={handleEnable} className={'border border-dark'}>
+            Ubah
+          </Button>
         </span>
+
+        <input
+          type='submit'
+          className={`px-3 py-2 rounded border border-dark cursor-pointer w-fit ${
+            isDisabled && 'hidden'
+          }`}
+        />
       </form>
     </div>
   );

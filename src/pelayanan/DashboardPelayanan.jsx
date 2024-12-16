@@ -151,46 +151,48 @@ const DashboardPelayanan = () => {
           <table className='col-span-2 w-full *:*:border-none'>
             <tbody>
               <tr>
-                <td className='font-semibold'>Alamat Kantor</td>
-                <td>:</td>
+                <td className='font-semibold w-5/12'>Alamat Kantor</td>
+                <td className='w-1/12'>:</td>
                 <td>Jl. Jalan</td>
               </tr>
               <tr>
-                <td className='font-semibold'>No Telp Kantor/Email</td>
-                <td>:</td>
+                <td className='font-semibold w-5/12'>No Telp Kantor/Email</td>
+                <td className='w-1/12'>:</td>
                 <td>email@gmail.com</td>
               </tr>
               <tr>
-                <td className='font-semibold'>Pekerjaan</td>
-                <td>:</td>
+                <td className='font-semibold w-5/12'>Pekerjaan</td>
+                <td className='w-1/12'>:</td>
                 <td>Mahasiswa</td>
               </tr>
               <tr>
-                <td className='font-semibold'>Tempat Kelahiran</td>
-                <td>:</td>
+                <td className='font-semibold w-5/12'>Tempat Kelahiran</td>
+                <td className='w-1/12'>:</td>
                 <td>Sumbawa</td>
               </tr>
               <tr>
-                <td className='font-semibold'>Tgl/ Bln/ Thn Kelahiran</td>
-                <td>:</td>
+                <td className='font-semibold w-5/12'>Tgl/ Bln/ Thn Kelahiran</td>
+                <td className='w-1/12'>:</td>
                 <td>31/12/1999</td>
               </tr>
               <tr>
-                <td className='font-semibold'>Penghargaan yang telah diterima</td>
-                <td>:</td>
+                <td className='font-semibold w-5/12'>Penghargaan yang telah diterima</td>
+                <td className='w-1/12'>:</td>
                 <td>25X</td>
               </tr>
               <tr>
-                <td className='font-semibold'>Bersediakah saudara donor pada waktu bulan puasa</td>
-                <td>:</td>
+                <td className='font-semibold w-5/12'>
+                  Bersediakah saudara donor pada waktu bulan puasa
+                </td>
+                <td className='w-1/12'>:</td>
                 <td>Tidak</td>
               </tr>
               <tr>
-                <td className='font-semibold'>
+                <td className='font-semibold w-5/12'>
                   Bersediakah saudara donor saat dibutuhkan untuk keperluan tertentu (di luar donor
                   rutin)
                 </td>
-                <td>:</td>
+                <td className='w-1/12'>:</td>
                 <td>Ya</td>
               </tr>
             </tbody>
