@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const TambahHakAkses = () => {
+const UbahHakAkses = () => {
   const {
     register,
     handleSubmit,
@@ -18,27 +18,46 @@ const TambahHakAkses = () => {
 
   const [isPass, setIsPass] = useState(true);
 
-  const tambahHakAkses = async ({ foto, username, password, konfPass, hak_akses }) => {
-    const foto_name = foto[0]?.name;
+  const location = useLocation();
+  const { id } = location.state || {};
 
-    if (password !== konfPass) {
-      alert('Password Berbeda');
-      return;
+  const [dataAkses, setDataAkses] = useState();
+
+  useEffect(() => {
+    axios.get(`https://sidede-api.vercel.app/hakakses/${id}`).then((res) => {
+      setDataAkses(res.data.result[0]);
+    });
+  }, []);
+
+  const ubahHakAkses = async (data) => {
+    // AMBIL DATA YANG TIDAK KOSONG
+    const validData = {};
+
+    if (data.password !== data.konfPass) return alert('Password tidak sama');
+
+    // Cek dan masukkan hanya data yang ada isinya
+    if (data.foto && Object.keys(data.foto).length > 0) {
+      validData.foto = data.foto; // Foto hanya dikirim jika ada isinya
+    }
+    if (data.username) {
+      validData.username = data.username; // Username harus ada
+    }
+    if (data.password) {
+      validData.password = data.password; // Kirim password hanya jika ada
+    }
+    if (data.hak_akses) {
+      validData.hak_akses = data.hak_akses; // Hak akses hanya dikirim jika ada isinya
     }
 
+    // PATCH
     await axios
-      .post(`https://sidede-api.vercel.app/hakakses`, {
-        foto_name,
-        username,
-        password,
-        hak_akses,
-      })
+      .patch(`https://sidede-api.vercel.app/hakakses/${id}`, validData)
       .then((res) => {
         alert(res.data.message);
         navigate('/admin/hakakses');
       })
       .catch((err) => {
-        console.log('Error saat menambah data : ', err.message);
+        console.error('Error saat mengubah data :', err.message);
         alert(err.response.data.message);
       });
   };
@@ -49,12 +68,13 @@ const TambahHakAkses = () => {
 
   return (
     <div className='p-10 flex flex-col gap-5 items-center'>
-      <h2>Tambah Data Hak Akses</h2>
-      <form onSubmit={handleSubmit(tambahHakAkses)} className='flex flex-col gap-2 items-center'>
+      <h2>Ubah Data Hak Akses</h2>
+      <form onSubmit={handleSubmit(ubahHakAkses)} className='flex flex-col gap-2 items-center'>
         <span className='flex flex-col w-full'>
           <label htmlFor='foto'>Foto</label>
           <input
             id='foto'
+            placeholder={dataAkses?.foto}
             type='file'
             className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border'
             {...register('foto')}
@@ -67,11 +87,10 @@ const TambahHakAkses = () => {
           <label htmlFor='username'>Username</label>
           <input
             id='username'
+            placeholder={dataAkses?.username}
             type='text'
             className='px-3 py-2 rounded-md'
-            {...register('username', {
-              required: 'username wajib di isi',
-            })}
+            {...register('username')}
           />
           {errors.username && <p className='text-brand'>{errors.username.message}</p>}
         </span>
@@ -85,7 +104,6 @@ const TambahHakAkses = () => {
               type={`${isPass ? 'password' : 'text'}`}
               className='px-3 py-2 rounded-md w-full'
               {...register('password', {
-                required: 'password wajib di isi',
                 minLength: { value: 8, message: ' minimal 8 karakter' },
               })}
             />
@@ -119,10 +137,10 @@ const TambahHakAkses = () => {
             name='hak_akses'
             id='hak_akses'
             className='px-3 py-2 rounded-md w-full'
-            {...register('hak_akses', { required: 'wajib di isi' })}
+            {...register('hak_akses')}
           >
             <option value='' hidden>
-              Hak Akses
+              {dataAkses?.hak_akses === 'A' ? 'Staff Administrasi' : 'Staff Pelayanan'}
             </option>
             <option value='A'>Staff Administrasi</option>
             <option value='S'>Staff Pelayanan</option>
@@ -138,4 +156,4 @@ const TambahHakAkses = () => {
   );
 };
 
-export default TambahHakAkses;
+export default UbahHakAkses;

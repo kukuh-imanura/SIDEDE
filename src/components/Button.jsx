@@ -54,7 +54,7 @@ export const ButtonInstall = () => {
   );
 };
 
-const Button = ({ children, className, link, onclick }) => {
+const Button = ({ children, className, link, onclick, state }) => {
   return link?.includes('#') ? (
     <a
       href={link}
@@ -66,6 +66,7 @@ const Button = ({ children, className, link, onclick }) => {
   ) : (
     <Link
       to={link}
+      state={state}
       className={`px-3 py-2 rounded-md cursor-pointer block ${className}`}
       onClick={onclick}
     >
@@ -81,4 +82,5 @@ Button.propTypes = {
   className: PropTypes.any,
   link: PropTypes.any,
   onclick: PropTypes.any,
+  state: PropTypes.any,
 };
