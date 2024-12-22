@@ -4,31 +4,42 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const HakAkses = () => {
-  const [dataAkses, setDataAkses] = useState();
+  const [dataAkses, setDataAkses] = useState([]);
+  const [pagination, setPagination] = useState({});
+  const [page, setPage] = useState(1);
+  const limit = 5;
+
+  const getHakAkses = async () => {
+    try {
+      const res = await axios.get(
+        `https://sidede-api.vercel.app/hakakses?limit=${limit}&page=${page}`
+      );
+
+      setPagination(res.data.pagination);
+      setDataAkses(res.data.result || []);
+    } catch (err) {
+      console.log('Error saat mengambil data : ', err.message);
+      alert(err.response?.data.message || 'Terjadi kesalahan pada server');
+    }
+  };
 
   const deleteHakAkses = async (id) => {
     const isConfirm = confirm('Hapus data ini?');
+    if (!isConfirm) return;
 
-    if (!isConfirm) {
-      return;
-    }
-
-    await axios.delete(`https://sidede-api.vercel.app/hakakses/${id}`).then((res) => {
+    try {
+      const res = await axios.delete(`https://sidede-api.vercel.app/hakakses/${id}`);
       alert(res.data.message);
-    });
+      getHakAkses();
+    } catch (err) {
+      console.log('Error saat menghapus data : ', err.message);
+      alert(err.response?.data.message || 'Terjadi kesalahan pada server');
+    }
   };
 
   useEffect(() => {
-    axios
-      .get(`https://sidede-api.vercel.app/hakakses/`)
-      .then((res) => {
-        setDataAkses(res.data.result);
-      })
-      .catch((err) => {
-        console.log('Error saat mengambil data : ', err.message);
-        alert(err.response.data.message);
-      });
-  }, [deleteHakAkses]);
+    getHakAkses();
+  }, [page]);
 
   return (
     <div className='p-10 space-y-5'>
@@ -55,7 +66,7 @@ const HakAkses = () => {
             {dataAkses?.map((v, i) => {
               return (
                 <tr key={i}>
-                  <td>{i + 1}</td>
+                  <td>{(page - 1) * limit + (i + 1)}</td>
                   <td>
                     <span className='flex gap-1'>
                       <Button
@@ -89,12 +100,13 @@ const HakAkses = () => {
         </table>
       </div>
 
-      <span className='flex gap-2 w-full justify-center'>
-        <Button>
+      <span className='flex gap-2 w-full justify-center items-center'>
+        <Button onclick={() => setPage(pagination.prev)}>
           <FontAwesomeIcon icon={'fas fa-arrow-left'} />
           &nbsp;Sebelumnya
         </Button>
-        <Button>
+        <p>{page}</p>
+        <Button onclick={() => setPage(pagination.next)}>
           Berikutnya&nbsp;
           <FontAwesomeIcon icon={'fas fa-arrow-right'} />
         </Button>
