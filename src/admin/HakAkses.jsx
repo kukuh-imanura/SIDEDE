@@ -11,9 +11,7 @@ const HakAkses = () => {
 
   const getHakAkses = async () => {
     try {
-      const res = await axios.get(
-        `https://sidede-api.vercel.app/hakakses?limit=${limit}&page=${page}`
-      );
+      const res = await axios.get(`/api/hakakses?limit=${limit}&page=${page}`);
 
       setPagination(res.data.pagination);
       setDataAkses(res.data.result || []);
@@ -28,7 +26,7 @@ const HakAkses = () => {
     if (!isConfirm) return;
 
     try {
-      const res = await axios.delete(`https://sidede-api.vercel.app/hakakses/${id}`);
+      const res = await axios.delete(`/api/hakakses/${id}`);
       alert(res.data.message);
       getHakAkses();
     } catch (err) {

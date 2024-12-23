@@ -15,7 +15,6 @@ const UbahHakAkses = () => {
   const navigate = useNavigate();
 
   const password = watch('password');
-
   const [isPass, setIsPass] = useState(true);
 
   const location = useLocation();
@@ -23,47 +22,33 @@ const UbahHakAkses = () => {
 
   const [dataAkses, setDataAkses] = useState();
 
+  const showPassword = () => {
+    setIsPass(!isPass);
+  };
+
+  const getData = async () => {
+    const res = await axios.get(`https://sidede-api.vercel.app/hakakses/${id}`);
+    setDataAkses(res.data.result[0]);
+  };
+
   useEffect(() => {
-    axios.get(`https://sidede-api.vercel.app/hakakses/${id}`).then((res) => {
-      setDataAkses(res.data.result[0]);
-    });
+    getData();
   }, []);
 
   const ubahHakAkses = async (data) => {
-    // AMBIL DATA YANG TIDAK KOSONG
-    const validData = {};
+    try {
+      if (data.password !== data.konfPass) return alert('Password tidak sama');
 
-    if (data.password !== data.konfPass) return alert('Password tidak sama');
+      data.foto = data.foto[0]?.name;
 
-    // Cek dan masukkan hanya data yang ada isinya
-    if (data.foto && Object.keys(data.foto).length > 0) {
-      validData.foto = data.foto; // Foto hanya dikirim jika ada isinya
+      // PATCH
+      const res = await axios.patch(`/api/hakakses/${id}`, data);
+      alert(res.data.message);
+      navigate('/admin/hakakses');
+    } catch (err) {
+      console.error('Error saat mengubah data :', err.message);
+      alert(err.response?.data.message);
     }
-    if (data.username) {
-      validData.username = data.username; // Username harus ada
-    }
-    if (data.password) {
-      validData.password = data.password; // Kirim password hanya jika ada
-    }
-    if (data.hak_akses) {
-      validData.hak_akses = data.hak_akses; // Hak akses hanya dikirim jika ada isinya
-    }
-
-    // PATCH
-    await axios
-      .patch(`https://sidede-api.vercel.app/hakakses/${id}`, validData)
-      .then((res) => {
-        alert(res.data.message);
-        navigate('/admin/hakakses');
-      })
-      .catch((err) => {
-        console.error('Error saat mengubah data :', err.message);
-        alert(err.response.data.message);
-      });
-  };
-
-  const showPassword = () => {
-    setIsPass(!isPass);
   };
 
   return (

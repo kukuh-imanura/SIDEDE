@@ -1,18 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const TambahPendonor = () => {
+const UbahPendonor = () => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm({ mode: 'all' });
-
-  const navigate = useNavigate();
 
   const password = watch('password');
   const [isPass, setIsPass] = useState(true);
@@ -21,61 +19,78 @@ const TambahPendonor = () => {
     setIsPass(!isPass);
   };
 
-  const tambahPendonor = async ({
-    foto,
-    username,
-    password,
-    nik,
-    nkd,
-    nama,
-    jk,
-    tempatLhr,
-    tglLhr,
-    pekerjaan,
-    kecamatan,
-    kelurahan,
-    kota,
-    alamat,
-    telpRmh,
-    almKantor,
-    email,
-  }) => {
-    try {
-      const foto_name = foto[0]?.name;
+  const navigate = useNavigate();
 
-      const result = await axios.post('/api/pendonor', {
-        foto_name,
-        username,
-        password,
-        nik,
-        nkd,
-        nama,
-        jk,
-        tempatLhr,
-        tglLhr,
-        pekerjaan,
-        kecamatan,
-        kelurahan,
-        kota,
-        alamat,
-        telpRmh,
-        almKantor,
-        email,
-      });
+  const location = useLocation();
+  const { nik } = location.state || {};
+
+  const [data, setData] = useState({});
+
+  const ubahPendonor = async (data) => {
+    try {
+      data.foto = data.foto[0]?.name;
+
+      const result = await axios.patch(`/api/pendonor/${nik}`, data);
 
       alert(result.data.message);
       navigate('/admin/pendonor');
+    } catch (err) {
+      console.log('Error saat mengubah data : ', err.message);
+      alert(err.response?.data.message);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const pendonor = await axios.get(`http://localhost:3000/pendonor/${nik}`);
+      const data = pendonor.data.result[0];
+      setData(data);
+
+      const akses = await axios.get(`http://localhost:3000/hakakses/${data.id_akses}`);
+      setData((prev) => ({
+        ...prev,
+        ...akses.data.result[0],
+      }));
     } catch (err) {
       console.log('Error saat menambah data : ', err.message);
       alert(err.response?.data.message);
     }
   };
 
+  const setPekerjaan = (pekerjaan) => {
+    switch (pekerjaan) {
+      case 'TP':
+        return 'TNI/ Polri';
+
+      case 'PN':
+        return 'Pegawai Negeri/ Swasta';
+
+      case 'PT':
+        return 'Petani/ Buruh';
+
+      case 'WS':
+        return 'Wiraswasta';
+
+      case 'MH':
+        return 'Mahasiswa';
+
+      case 'PG':
+        return 'Pedagang';
+
+      default:
+        return 'Lain-Lain';
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className='p-10 flex flex-col gap-5 items-center'>
-      <h2>Tambah Data Pendonor</h2>
+      <h2>Ubah Data Pendonor</h2>
 
-      <form onSubmit={handleSubmit(tambahPendonor)} className='flex flex-col gap-2 items-center'>
+      <form onSubmit={handleSubmit(ubahPendonor)} className='flex flex-col gap-2 items-center'>
         <div className='flex w-full gap-6'>
           <span className='flex flex-col w-full'>
             <label htmlFor='foto'>Foto</label>
@@ -93,11 +108,10 @@ const TambahPendonor = () => {
             <label htmlFor='username'>Username</label>
             <input
               id='username'
+              placeholder={data?.username}
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('username', {
-                required: 'username wajib di isi',
-              })}
+              {...register('username')}
             />
             {errors.username && <p className='text-brand'>{errors.username.message}</p>}
           </span>
@@ -113,7 +127,6 @@ const TambahPendonor = () => {
                 type={`${isPass ? 'password' : 'text'}`}
                 className='px-3 py-2 rounded-md w-full'
                 {...register('password', {
-                  required: 'password wajib di isi',
                   minLength: { value: 8, message: ' minimal 8 karakter' },
                 })}
               />
@@ -147,24 +160,24 @@ const TambahPendonor = () => {
             <label htmlFor='nik'>NIK</label>
             <input
               id='nik'
+              placeholder={data?.nik}
               type='text'
               className='px-3 py-2 rounded-md'
               {...register('nik', {
-                required: 'NIK wajib di isi',
                 minLength: { value: 16, message: 'NIK harus 16 karakter' },
               })}
             />
             {errors.nik && <p className='text-brand'>{errors.nik.message}</p>}
           </span>
+
           <span className='flex flex-col w-full'>
             <label htmlFor='nkd'>Nomor Kartu Donor</label>
             <input
               id='nkd'
+              placeholder={data?.no_kartu}
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('nkd', {
-                required: 'wajib di isi',
-              })}
+              {...register('nkd')}
             />
             {errors.nkd && <p className='text-brand'>{errors.nkd.message}</p>}
           </span>
@@ -174,11 +187,10 @@ const TambahPendonor = () => {
           <label htmlFor='nama'>Nama</label>
           <input
             id='nama'
+            placeholder={data?.nama}
             type='text'
             className='px-3 py-2 rounded-md'
-            {...register('nama', {
-              required: 'nama wajib di isi',
-            })}
+            {...register('nama')}
           />
           {errors.nama && <p className='text-brand'>{errors.nama.message}</p>}
         </span>
@@ -188,22 +200,12 @@ const TambahPendonor = () => {
 
           <div className='flex gap-6'>
             <label htmlFor='idlaki'>
-              <input
-                type='radio'
-                value='l'
-                id='idlaki'
-                {...register('jk', { required: 'wajib di isi' })}
-              />
+              <input type='radio' value='l' id='idlaki' {...register('jk')} />
               &nbsp;Laki
             </label>
 
             <label htmlFor='idperempuan'>
-              <input
-                type='radio'
-                value='p'
-                id='idperempuan'
-                {...register('jk', { required: 'wajib di isi' })}
-              />
+              <input type='radio' value='p' id='idperempuan' {...register('jk')} />
               &nbsp;Perempuan
             </label>
           </div>
@@ -216,23 +218,21 @@ const TambahPendonor = () => {
             <label htmlFor='tempatLhr'>Tempat Lahir</label>
             <input
               id='tempatLhr'
+              placeholder={data?.tempat_lahir}
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('tempatLhr', {
-                required: 'wajib di isi',
-              })}
+              {...register('tempatLhr')}
             />
             {errors.tempatLhr && <p className='text-brand'>{errors.tempatLhr.message}</p>}
           </span>
+
           <span className='flex flex-col w-full'>
             <label htmlFor='tglLhr'>Tanggal Lahir</label>
             <input
               id='tglLhr'
               type='date'
               className='px-3 py-2 rounded-md'
-              {...register('tglLhr', {
-                required: 'wajib di isi',
-              })}
+              {...register('tglLhr')}
             />
             {errors.tglLhr && <p className='text-brand'>{errors.tglLhr.message}</p>}
           </span>
@@ -244,14 +244,14 @@ const TambahPendonor = () => {
             name='pekerjaan'
             id='pekerjaan'
             className='px-3 py-2 rounded-md w-full'
-            {...register('pekerjaan', { required: 'pekerjaan wajib di isi' })}
+            {...register('pekerjaan')}
           >
             <option value='' hidden>
-              Pekerjaan
+              {setPekerjaan(data?.pekerjaan)}
             </option>
-            <option value='TP'>TNI / Polri</option>
-            <option value='PN'>Pegawai Negri</option>
-            <option value='PT'>Petani</option>
+            <option value='TP'>TNI/ Polri</option>
+            <option value='PN'>Pegawai Negeri/ Swasta</option>
+            <option value='PT'>Petani/ Buruh</option>
             <option value='WS'>Wiraswasta</option>
             <option value='MH'>Mahasiswa</option>
             <option value='PG'>Pedagang</option>
@@ -264,11 +264,10 @@ const TambahPendonor = () => {
             <label htmlFor='kecamatan'>Kecamatan</label>
             <input
               id='kecamatan'
+              placeholder={data?.kecamatan}
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('kecamatan', {
-                required: 'kecamatan wajib di isi',
-              })}
+              {...register('kecamatan')}
             />
             {errors.kecamatan && <p className='text-brand'>{errors.kecamatan.message}</p>}
           </span>
@@ -277,23 +276,22 @@ const TambahPendonor = () => {
             <label htmlFor='kelurahan'>Kelurahan</label>
             <input
               id='kelurahan'
+              placeholder={data?.kelurahan}
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('kelurahan', {
-                required: 'kelurahan wajib di isi',
-              })}
+              {...register('kelurahan')}
             />
             {errors.kelurahan && <p className='text-brand'>{errors.kelurahan.message}</p>}
           </span>
+
           <span className='flex flex-col w-full'>
             <label htmlFor='kota'>Kota</label>
             <input
               id='kota'
+              placeholder={data?.kota}
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('kota', {
-                required: 'kota wajib di isi',
-              })}
+              {...register('kota')}
             />
             {errors.kota && <p className='text-brand'>{errors.kota.message}</p>}
           </span>
@@ -305,11 +303,10 @@ const TambahPendonor = () => {
               <label htmlFor='alamat'>Alamat</label>
               <textarea
                 id='alamat'
+                placeholder={data?.alamat}
                 type='text'
                 className='px-3 py-2 rounded-md'
-                {...register('alamat', {
-                  required: 'alamat wajib di isi',
-                })}
+                {...register('alamat')}
               />
               {errors.alamat && <p className='text-brand'>{errors.alamat.message}</p>}
             </span>
@@ -318,11 +315,10 @@ const TambahPendonor = () => {
               <label htmlFor='telpRmh'>Telpon Rumah</label>
               <input
                 id='telpRmh'
+                placeholder={data?.telp_rumah}
                 type='text'
                 className='px-3 py-2 rounded-md'
-                {...register('telpRmh', {
-                  required: 'wajib di isi',
-                })}
+                {...register('telpRmh')}
               />
               {errors.telpRmh && <p className='text-brand'>{errors.telpRmh.message}</p>}
             </span>
@@ -333,11 +329,10 @@ const TambahPendonor = () => {
               <label htmlFor='almKantor'>Alamat Kantor</label>
               <textarea
                 id='almKantor'
+                placeholder={data?.alamat_kantor}
                 type='text'
                 className='px-3 py-2 rounded-md'
-                {...register('almKantor', {
-                  required: 'wajib di isi',
-                })}
+                {...register('almKantor')}
               />
               {errors.almKantor && <p className='text-brand'>{errors.almKantor.message}</p>}
             </span>
@@ -346,11 +341,10 @@ const TambahPendonor = () => {
               <label htmlFor='email'>Email/Telpon Kantor</label>
               <input
                 id='email'
+                placeholder={data?.email}
                 type='text'
                 className='px-3 py-2 rounded-md'
-                {...register('email', {
-                  required: 'wajib di isi',
-                })}
+                {...register('email')}
               />
               {errors.email && <p className='text-brand'>{errors.email.message}</p>}
             </span>
@@ -366,4 +360,4 @@ const TambahPendonor = () => {
   );
 };
 
-export default TambahPendonor;
+export default UbahPendonor;

@@ -18,29 +18,23 @@ const TambahHakAkses = () => {
 
   const [isPass, setIsPass] = useState(true);
 
-  const tambahHakAkses = async ({ foto, username, password, konfPass, hak_akses }) => {
-    const foto_name = foto[0]?.name;
+  const tambahHakAkses = async ({ foto, username, password, hak_akses }) => {
+    try {
+      const foto_name = foto[0]?.name;
 
-    if (password !== konfPass) {
-      alert('Password Berbeda');
-      return;
-    }
-
-    await axios
-      .post(`https://sidede-api.vercel.app/hakakses`, {
+      const res = await axios.post(`/api/hakakses`, {
         foto_name,
         username,
         password,
         hak_akses,
-      })
-      .then((res) => {
-        alert(res.data.message);
-        navigate('/admin/hakakses');
-      })
-      .catch((err) => {
-        console.log('Error saat menambah data : ', err.message);
-        alert(err.response.data.message);
       });
+
+      alert(res.data.message);
+      navigate('/admin/hakakses');
+    } catch (err) {
+      console.log('Error saat menambah data : ', err.message);
+      alert(err.response?.data.message);
+    }
   };
 
   const showPassword = () => {

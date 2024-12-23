@@ -22,6 +22,7 @@ import UbahHakAkses from '../admin/UbahHakAkses';
 
 import Pendonor from '../admin/Pendonor';
 import TambahPendonor from '../admin/TambahPendonor';
+import UbahPendonor from '../admin/UbahPendonor';
 
 import Pendaftaran from '../admin/Pendaftaran';
 import TambahPendaftaran from '../admin/TambahPendaftaran';
@@ -74,6 +75,7 @@ const RoutePath = () => {
 
         <Route path='/admin/pendonor' element={<Pendonor />} />
         <Route path='/admin/pendonor/tambah' element={<TambahPendonor />} />
+        <Route path='/admin/pendonor/ubah' element={<UbahPendonor />} />
 
         <Route path='/admin/pendaftaran' element={<Pendaftaran />} />
         <Route path='/admin/pendaftaran/tambah' element={<TambahPendaftaran />} />

@@ -51,7 +51,7 @@ const AdminRoute = ({ isLogin, access }) => {
           </aside>
 
           <main className='w-full overflow-y-scroll'>
-            <nav className='px-6 py-4 w-full flex justify-between items-center sticky top-0 bg-light'>
+            <nav className='px-6 py-4 w-full flex justify-between items-center sticky top-0 bg-light z-10'>
               <h2></h2>
 
               {/* DROPDOWN */}
