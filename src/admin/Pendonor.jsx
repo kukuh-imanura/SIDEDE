@@ -12,7 +12,9 @@ const Pendonor = () => {
 
   const getData = async () => {
     try {
-      const res = await axios.get(`/api/pendonor?limit=${limit}&page=${page}`);
+      const res = await axios.get(
+        `https://sidede-api.vercel.app/pendonor?limit=${limit}&page=${page}`
+      );
 
       setData(res.data.result);
       setPagination(res.data.pagination);
@@ -27,7 +29,7 @@ const Pendonor = () => {
     if (!isConfirm) return;
 
     try {
-      const res = await axios.delete(`/api/pendonor/${nik}`);
+      const res = await axios.delete(`https://sidede-api.vercel.app/pendonor/${nik}`);
       alert(res.data.message);
       getData();
     } catch (err) {

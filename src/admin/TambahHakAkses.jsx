@@ -22,7 +22,7 @@ const TambahHakAkses = () => {
     try {
       const foto_name = foto[0]?.name;
 
-      const res = await axios.post(`/api/hakakses`, {
+      const res = await axios.post(`https://sidede-api.vercel.app/hakakses`, {
         foto_name,
         username,
         password,

@@ -30,7 +30,7 @@ const UbahPendonor = () => {
     try {
       data.foto = data.foto[0]?.name;
 
-      const result = await axios.patch(`/api/pendonor/${nik}`, data);
+      const result = await axios.patch(`https://sidede-api.vercel.app/pendonor/${nik}`, data);
 
       alert(result.data.message);
       navigate('/admin/pendonor');

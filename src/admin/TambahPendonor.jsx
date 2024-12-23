@@ -43,7 +43,7 @@ const TambahPendonor = () => {
     try {
       const foto_name = foto[0]?.name;
 
-      const result = await axios.post('/api/pendonor', {
+      const result = await axios.post('https://sidede-api.vercel.app/pendonor', {
         foto_name,
         username,
         password,

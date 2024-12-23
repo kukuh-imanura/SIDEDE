@@ -42,7 +42,7 @@ const UbahHakAkses = () => {
       data.foto = data.foto[0]?.name;
 
       // PATCH
-      const res = await axios.patch(`/api/hakakses/${id}`, data);
+      const res = await axios.patch(`https://sidede-api.vercel.app/hakakses/${id}`, data);
       alert(res.data.message);
       navigate('/admin/hakakses');
     } catch (err) {
