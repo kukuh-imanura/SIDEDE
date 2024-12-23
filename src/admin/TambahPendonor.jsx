@@ -26,18 +26,18 @@ const TambahPendonor = () => {
     username,
     password,
     nik,
-    nkd,
+    no_kartu,
     nama,
-    jk,
-    tempatLhr,
-    tglLhr,
+    jenis_kelamin,
+    tempat_lahir,
+    tgl_lahir,
     pekerjaan,
     kecamatan,
     kelurahan,
     kota,
     alamat,
-    telpRmh,
-    almKantor,
+    telp_rumah,
+    alamat_kantor,
     email,
   }) => {
     try {
@@ -48,18 +48,18 @@ const TambahPendonor = () => {
         username,
         password,
         nik,
-        nkd,
+        no_kartu,
         nama,
-        jk,
-        tempatLhr,
-        tglLhr,
+        jenis_kelamin,
+        tempat_lahir,
+        tgl_lahir,
         pekerjaan,
         kecamatan,
         kelurahan,
         kota,
         alamat,
-        telpRmh,
-        almKantor,
+        telp_rumah,
+        alamat_kantor,
         email,
       });
 
@@ -157,16 +157,16 @@ const TambahPendonor = () => {
             {errors.nik && <p className='text-brand'>{errors.nik.message}</p>}
           </span>
           <span className='flex flex-col w-full'>
-            <label htmlFor='nkd'>Nomor Kartu Donor</label>
+            <label htmlFor='no_kartu'>Nomor Kartu Donor</label>
             <input
-              id='nkd'
+              id='no_kartu'
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('nkd', {
+              {...register('no_kartu', {
                 required: 'wajib di isi',
               })}
             />
-            {errors.nkd && <p className='text-brand'>{errors.nkd.message}</p>}
+            {errors.no_kartu && <p className='text-brand'>{errors.no_kartu.message}</p>}
           </span>
         </div>
 
@@ -192,7 +192,7 @@ const TambahPendonor = () => {
                 type='radio'
                 value='l'
                 id='idlaki'
-                {...register('jk', { required: 'wajib di isi' })}
+                {...register('jenis_kelamin', { required: 'wajib di isi' })}
               />
               &nbsp;Laki
             </label>
@@ -202,39 +202,39 @@ const TambahPendonor = () => {
                 type='radio'
                 value='p'
                 id='idperempuan'
-                {...register('jk', { required: 'wajib di isi' })}
+                {...register('jenis_kelamin', { required: 'wajib di isi' })}
               />
               &nbsp;Perempuan
             </label>
           </div>
 
-          {errors.jk && <p className='text-brand'>{errors.jk.message}</p>}
+          {errors.jenis_kelamin && <p className='text-brand'>{errors.jenis_kelamin.message}</p>}
         </div>
 
         <div className='flex w-full gap-6'>
           <span className='flex flex-col w-full'>
-            <label htmlFor='tempatLhr'>Tempat Lahir</label>
+            <label htmlFor='tempat_lahir'>Tempat Lahir</label>
             <input
-              id='tempatLhr'
+              id='tempat_lahir'
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('tempatLhr', {
+              {...register('tempat_lahir', {
                 required: 'wajib di isi',
               })}
             />
-            {errors.tempatLhr && <p className='text-brand'>{errors.tempatLhr.message}</p>}
+            {errors.tempat_lahir && <p className='text-brand'>{errors.tempat_lahir.message}</p>}
           </span>
           <span className='flex flex-col w-full'>
-            <label htmlFor='tglLhr'>Tanggal Lahir</label>
+            <label htmlFor='tgl_lahir'>Tanggal Lahir</label>
             <input
-              id='tglLhr'
+              id='tgl_lahir'
               type='date'
               className='px-3 py-2 rounded-md'
-              {...register('tglLhr', {
+              {...register('tgl_lahir', {
                 required: 'wajib di isi',
               })}
             />
-            {errors.tglLhr && <p className='text-brand'>{errors.tglLhr.message}</p>}
+            {errors.tgl_lahir && <p className='text-brand'>{errors.tgl_lahir.message}</p>}
           </span>
         </div>
 
@@ -315,31 +315,31 @@ const TambahPendonor = () => {
             </span>
 
             <span className='flex flex-col w-full'>
-              <label htmlFor='telpRmh'>Telpon Rumah</label>
+              <label htmlFor='telp_rumah'>Telpon Rumah</label>
               <input
-                id='telpRmh'
+                id='telp_rumah'
                 type='text'
                 className='px-3 py-2 rounded-md'
-                {...register('telpRmh', {
+                {...register('telp_rumah', {
                   required: 'wajib di isi',
                 })}
               />
-              {errors.telpRmh && <p className='text-brand'>{errors.telpRmh.message}</p>}
+              {errors.telp_rumah && <p className='text-brand'>{errors.telp_rumah.message}</p>}
             </span>
           </div>
 
           <div className='w-full space-y-2'>
             <span className='flex flex-col w-full'>
-              <label htmlFor='almKantor'>Alamat Kantor</label>
+              <label htmlFor='alamat_kantor'>Alamat Kantor</label>
               <textarea
-                id='almKantor'
+                id='alamat_kantor'
                 type='text'
                 className='px-3 py-2 rounded-md'
-                {...register('almKantor', {
+                {...register('alamat_kantor', {
                   required: 'wajib di isi',
                 })}
               />
-              {errors.almKantor && <p className='text-brand'>{errors.almKantor.message}</p>}
+              {errors.alamat_kantor && <p className='text-brand'>{errors.alamat_kantor.message}</p>}
             </span>
 
             <span className='flex flex-col w-full'>
