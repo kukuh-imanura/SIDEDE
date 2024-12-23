@@ -41,7 +41,12 @@ export default defineConfig({
         target: 'https://sidede-api.vercel.app',
         // target: 'http://localhost:3000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => {
+          console.log('Path sebelum rewrite:', path);
+          const newPath = path.replace(/^\/api/, '');
+          console.log('Path setelah rewrite:', newPath);
+          return newPath;
+        },
       },
     },
   },
