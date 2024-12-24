@@ -26,6 +26,7 @@ import UbahPendonor from '../admin/UbahPendonor';
 
 import Pendaftaran from '../admin/Pendaftaran';
 import TambahPendaftaran from '../admin/TambahPendaftaran';
+import UbahPendaftaran from '../admin/UbahPendaftaran';
 
 import DataScreening from '../admin/DataScreening';
 import TambahScreening from '../admin/TambahScreening';
@@ -79,6 +80,7 @@ const RoutePath = () => {
 
         <Route path='/admin/pendaftaran' element={<Pendaftaran />} />
         <Route path='/admin/pendaftaran/tambah' element={<TambahPendaftaran />} />
+        <Route path='/admin/pendaftaran/ubah' element={<UbahPendaftaran />} />
 
         <Route path='/admin/screening' element={<DataScreening />} />
         <Route path='/admin/screening/pertanyaan' element={<TambahPertanyaan />} />

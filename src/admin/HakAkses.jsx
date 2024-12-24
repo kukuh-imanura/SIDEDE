@@ -50,8 +50,8 @@ const HakAkses = () => {
         </Button>
       </span>
 
-      <div className='overflow-x-auto w-full'>
-        <table className='table-auto text-nowrap mx-auto'>
+      <div className='w-full overflow-x-auto'>
+        <table className='mx-auto table-auto text-nowrap'>
           <thead>
             <tr>
               <th>No</th>
@@ -100,7 +100,7 @@ const HakAkses = () => {
         </table>
       </div>
 
-      <span className='flex gap-2 w-full justify-center items-center'>
+      <span className='flex items-center justify-center w-full gap-2'>
         <Button onclick={() => setPage(pagination.prev)}>
           <FontAwesomeIcon icon={'fas fa-arrow-left'} />
           &nbsp;Sebelumnya

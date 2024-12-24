@@ -1,40 +1,58 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const TambahPendaftaran = () => {
+const UbahPendaftaran = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: 'all' });
 
+  const [data, setData] = useState();
+
+  const location = useLocation();
+  const { id } = location.state || {};
+
   const navigate = useNavigate();
 
-  const tambahPendaftaran = async (data) => {
+  const ubahPendaftaran = async (data) => {
     try {
-      const res = await axios.post('https://sidede-api.vercel.app/pendaftaran', data);
+      const res = await axios.patch(`https://sidede-api.vercel.app/pendaftaran/${id}`, data);
       alert(res.data.message);
       navigate('/admin/pendaftaran');
     } catch (err) {
-      console.error('Error saat menambah data : ', err.message);
-      alert(err.response?.data.message);
+      console.error(err.message);
     }
   };
 
+  const getData = async () => {
+    try {
+      const res = await axios.get(`https://sidede-api.vercel.app/pendaftaran/${id}`);
+      setData(res.data.result[0]);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className='flex flex-col items-center gap-5 p-10'>
-      <h2>Tambah Data Pendaftaran</h2>
+      <h2>Ubah Data Pendaftaran</h2>
 
-      <form onSubmit={handleSubmit(tambahPendaftaran)} className='flex flex-col items-center gap-2'>
+      <form onSubmit={handleSubmit(ubahPendaftaran)} className='flex flex-col items-center gap-2'>
         <span className='flex flex-col w-full'>
           <label htmlFor='nik'>NIK</label>
           <input
             id='nik'
+            placeholder={data?.nik}
             type='text'
             className='px-3 py-2 rounded-md'
             {...register('nik', {
-              required: 'NIK wajib di isi',
               minLength: { value: 16, message: ' NIK harus 16 karakter' },
             })}
           />
@@ -46,11 +64,10 @@ const TambahPendaftaran = () => {
             <label htmlFor='lokasi'>Lokasi</label>
             <input
               id='lokasi'
+              placeholder={data?.lokasi}
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('lokasi', {
-                required: 'wajib di isi',
-              })}
+              {...register('lokasi')}
             />
             {errors.lokasi && <p className='text-brand'>{errors.lokasi.message}</p>}
           </span>
@@ -64,10 +81,10 @@ const TambahPendaftaran = () => {
               name='tipe'
               id='tipe'
               className='w-full px-3 py-2 rounded-md'
-              {...register('tipe', { required: 'wajib di isi' })}
+              {...register('tipe')}
             >
               <option value='' hidden>
-                Tipe Donor
+                {data?.tipe === 'S' ? 'Sukarela' : 'Keluarga'}
               </option>
               <option value='S'>Sukarela</option>
               <option value='K'>Keluarga</option>
@@ -172,4 +189,4 @@ const TambahPendaftaran = () => {
   );
 };
 
-export default TambahPendaftaran;
+export default UbahPendaftaran;
