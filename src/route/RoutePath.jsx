@@ -34,6 +34,7 @@ import TambahPertanyaan from '../admin/TambahPertanyaan';
 
 import Pemeriksaan from '../admin/Pemeriksaan';
 import TambahDataPemeriksaan from '../admin/TambahDataPemeriksaan';
+import UbahDataPemeriksaan from '../admin/UbahDataPemeriksaan';
 
 import Riwayat from '../admin/Riwayat';
 
@@ -88,6 +89,7 @@ const RoutePath = () => {
 
         <Route path='/admin/pemeriksaan' element={<Pemeriksaan />} />
         <Route path='/admin/pemeriksaan/tambah' element={<TambahDataPemeriksaan />} />
+        <Route path='/admin/pemeriksaan/ubah' element={<UbahDataPemeriksaan />} />
 
         <Route path='/admin/riwayat' element={<Riwayat />} />
 

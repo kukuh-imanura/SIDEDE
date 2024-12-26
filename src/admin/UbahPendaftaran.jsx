@@ -24,6 +24,7 @@ const UbahPendaftaran = () => {
       navigate('/admin/pendaftaran');
     } catch (err) {
       console.error(err.message);
+      alert(err.response?.data.message);
     }
   };
 
@@ -33,6 +34,7 @@ const UbahPendaftaran = () => {
       setData(res.data.result[0]);
     } catch (err) {
       console.error(err.message);
+      alert(err.response?.data.message);
     }
   };
 
