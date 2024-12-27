@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../components/Button';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 const Pendaftaran = () => {
   const [data, setData] = useState([]);
@@ -33,6 +34,11 @@ const Pendaftaran = () => {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const formatDate = (date) => {
+    const formattedDate = dayjs(date).add(8, 'hour').format('YYYY-MM-DD');
+    return formattedDate;
   };
 
   useEffect(() => {
@@ -93,11 +99,11 @@ const Pendaftaran = () => {
                   </td>
                   <td>{v.id_pendaftaran}</td>
                   <td>{v.nik}</td>
-                  <td>{v.tgl_donor}</td>
+                  <td>{formatDate(v.tgl_donor)}</td>
                   <td>{v.lokasi}</td>
                   <td>{v.tipe === 'S' ? 'Sukarela' : 'Keluarga'}</td>
                   <td>{v.donor_ke}</td>
-                  <td>{v.tgl_akhir_donor}</td>
+                  <td>{formatDate(v.tgl_akhir_donor)}</td>
                   <td>
                     {v.status === 'P' ? 'Diproses' : v.status === 'A' ? 'Diterima' : 'Ditolak'}
                   </td>

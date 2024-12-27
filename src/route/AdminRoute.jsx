@@ -27,9 +27,9 @@ const AdminRoute = ({ isLogin, access }) => {
     (
       <>
         <NotFound className={'lg:hidden'} />
-        <div className='hidden lg:flex h-screen'>
-          <aside className='border-r border-dark/10 h-full py-10 px-5 w-72'>
-            <span className='flex gap-2 items-center w-full justify-center'>
+        <div className='hidden h-screen lg:flex'>
+          <aside className='h-full px-5 py-10 border-r border-dark/10 w-72'>
+            <span className='flex items-center justify-center w-full gap-2'>
               <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
               {/* <h2 className='text-nowrap'>UTD-PMI</h2> */}
             </span>
@@ -45,13 +45,13 @@ const AdminRoute = ({ isLogin, access }) => {
               <Button link={'/admin/pendaftaran'}>Pendaftaran</Button>
               <Button link={'/admin/screening'}>Screening</Button>
               <Button link={'/admin/pemeriksaan'}>Pemeriksaan Kesehatan</Button>
-              <Button link={'/admin/riwayat'}>Riwayat Donor Darah</Button>
+              {/* <Button link={'/admin/riwayat'}>Riwayat Donor Darah</Button> */}
               <Button link={'/admin/mobileunit'}>Mobile unit</Button>
             </nav>
           </aside>
 
           <main className='w-full overflow-y-scroll'>
-            <nav className='px-6 py-4 w-full flex justify-between items-center sticky top-0 bg-light z-10'>
+            <nav className='sticky top-0 z-10 flex items-center justify-between w-full px-6 py-4 bg-light'>
               <h2></h2>
 
               {/* DROPDOWN */}
@@ -64,7 +64,7 @@ const AdminRoute = ({ isLogin, access }) => {
 
                 <menu
                   ref={menuRef}
-                  className='absolute w-full right-0 bg-light rounded-b-md shadow py-2 hidden'
+                  className='absolute right-0 hidden w-full py-2 shadow bg-light rounded-b-md'
                 >
                   <Button link={'admin/profile'} className={'text-right'}>
                     Account

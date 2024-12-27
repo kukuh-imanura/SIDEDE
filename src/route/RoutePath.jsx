@@ -40,6 +40,7 @@ import Riwayat from '../admin/Riwayat';
 
 import MobileUnit from '../admin/MobileUnit';
 import TambahMobileUnit from '../admin/TambahMobileUnit';
+import UbahMobileUnit from '../admin/UbahMobileUnit';
 
 // Pelayanan
 import DashboardPelayanan from '../pelayanan/DashboardPelayanan';
@@ -95,6 +96,7 @@ const RoutePath = () => {
 
         <Route path='/admin/mobileunit' element={<MobileUnit />} />
         <Route path='/admin/mobileunit/tambah' element={<TambahMobileUnit />} />
+        <Route path='/admin/mobileunit/ubah' element={<UbahMobileUnit />} />
       </Route>
 
       <Route element={<PelayananRoute isLogin={isLogin} access={access} />}>
