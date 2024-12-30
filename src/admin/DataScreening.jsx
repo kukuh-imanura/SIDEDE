@@ -14,7 +14,7 @@ const DataScreening = () => {
 
   const getPertanyaan = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/pertanyaan');
+      const res = await axios.get('https://sidede-api.vercel.app/pertanyaan');
       setPertanyaan(res.data.result);
     } catch (err) {
       console.error(err.message);
@@ -24,7 +24,9 @@ const DataScreening = () => {
 
   const getJawaban = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/screening?limit=${limit}&page=${page}`);
+      const res = await axios.get(
+        `https://sidede-api.vercel.app/screening?limit=${limit}&page=${page}`
+      );
       setJawaban(res.data.result);
       setPagination(res.data.pagination);
     } catch (err) {
@@ -61,7 +63,7 @@ const DataScreening = () => {
 
   const deleteJawaban = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:3000/screening/${id}`);
+      const res = await axios.delete(`https://sidede-api.vercel.app/screening/${id}`);
       alert(res.data.message);
       getJawaban();
     } catch (err) {

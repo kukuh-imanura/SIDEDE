@@ -17,7 +17,7 @@ const TambahScreening = () => {
 
   const tambahScreening = async (data) => {
     try {
-      const res = await axios.post('http://localhost:3000/screening', data);
+      const res = await axios.post('https://sidede-api.vercel.app/screening', data);
       alert(res.data.message);
       navigate('/admin/screening');
     } catch (err) {
@@ -28,7 +28,7 @@ const TambahScreening = () => {
 
   const getPertanyaan = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/pertanyaan');
+      const res = await axios.get('https://sidede-api.vercel.app/pertanyaan');
       setPertanyaan(res.data.result);
     } catch (err) {
       console.error(err.message);
