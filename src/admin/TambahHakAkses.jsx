@@ -42,9 +42,9 @@ const TambahHakAkses = () => {
   };
 
   return (
-    <div className='p-10 flex flex-col gap-5 items-center'>
+    <div className='flex flex-col items-center gap-5 p-10'>
       <h2>Tambah Data Hak Akses</h2>
-      <form onSubmit={handleSubmit(tambahHakAkses)} className='flex flex-col gap-2 items-center'>
+      <form onSubmit={handleSubmit(tambahHakAkses)} className='flex flex-col items-center gap-2'>
         <span className='flex flex-col w-full'>
           <label htmlFor='foto'>Foto</label>
           <input
@@ -73,11 +73,11 @@ const TambahHakAkses = () => {
         <div className='flex flex-col w-full'>
           <label htmlFor='password'>Password</label>
 
-          <div className='w-full flex items-center relative'>
+          <div className='relative flex items-center w-full'>
             <input
               id='password'
               type={`${isPass ? 'password' : 'text'}`}
-              className='px-3 py-2 rounded-md w-full'
+              className='w-full px-3 py-2 rounded-md'
               {...register('password', {
                 required: 'password wajib di isi',
                 minLength: { value: 8, message: ' minimal 8 karakter' },
@@ -85,7 +85,7 @@ const TambahHakAkses = () => {
             />
             <span
               onClick={showPassword}
-              className='p-2 cursor-pointer h-10 w-10 rounded-md absolute right-0 flex items-center justify-center'
+              className='absolute right-0 flex items-center justify-center w-10 h-10 p-2 rounded-md cursor-pointer'
             >
               <FontAwesomeIcon icon={`fas ${isPass ? 'fa-eye' : 'fa-eye-slash'}`} />
             </span>
@@ -112,7 +112,7 @@ const TambahHakAkses = () => {
           <select
             name='hak_akses'
             id='hak_akses'
-            className='px-3 py-2 rounded-md w-full'
+            className='w-full px-3 py-2 rounded-md'
             {...register('hak_akses', { required: 'wajib di isi' })}
           >
             <option value='' hidden>
@@ -125,7 +125,7 @@ const TambahHakAkses = () => {
 
         <input
           type='submit'
-          className='px-3 py-2 mt-4 rounded bg-dark text-light w-fit cursor-pointer'
+          className='px-3 py-2 mt-4 rounded cursor-pointer bg-dark text-light w-fit'
         />
       </form>
     </div>

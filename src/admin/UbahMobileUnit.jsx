@@ -51,7 +51,7 @@ const UbahMobileUnit = () => {
             <label htmlFor='lokasi'>Lokasi</label>
             <input
               id='lokasi'
-              label={data.lokasi}
+              placeholder={data?.lokasi}
               type='text'
               className='px-3 py-2 rounded-md'
               {...register('lokasi')}
