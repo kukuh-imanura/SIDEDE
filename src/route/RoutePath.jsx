@@ -56,8 +56,8 @@ import Screening from '../pendonor/Screening';
 import ScreeningPendonor from '../pendonor/ScreeningPendonor';
 import HasilPemeriksaan from '../pendonor/HasilPemeriksaan';
 
-const isLogin = false;
-const access = 'admin';
+const access = localStorage.getItem('akses') || '';
+const isLogin = access ? true : false;
 
 const RoutePath = () => {
   return (

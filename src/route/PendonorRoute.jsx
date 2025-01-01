@@ -12,9 +12,9 @@ const PendonorRoute = ({ isLogin, access }) => {
   }
 
   const redirectMap = {
-    pendonor: <Outlet />,
-    pelayanan: <Navigate to='/pelayanan' />,
-    admin: <Navigate to='/admin' />,
+    D: <Outlet />,
+    S: <Navigate to='/pelayanan' />,
+    A: <Navigate to='/admin' />,
   };
 
   const toggleDropdown = () => {
@@ -22,10 +22,19 @@ const PendonorRoute = ({ isLogin, access }) => {
     elem.classList.toggle('hidden');
   };
 
+  const logout = () => {
+    localStorage.removeItem('id');
+    localStorage.removeItem('akses');
+
+    alert('Logout Berhasil');
+
+    window.location.href = '/';
+  };
+
   return (
     (
       <div>
-        <nav className='px-6 py-4 w-full flex justify-between items-center sticky top-0 bg-light z-10'>
+        <nav className='sticky top-0 z-10 flex items-center justify-between w-full px-6 py-4 bg-light'>
           <Link to={'/pendonor'}>
             <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
           </Link>
@@ -40,12 +49,14 @@ const PendonorRoute = ({ isLogin, access }) => {
 
             <menu
               ref={menuRef}
-              className='absolute w-full right-0 bg-light rounded-b-md shadow py-2 hidden'
+              className='absolute right-0 hidden w-full py-2 shadow bg-light rounded-b-md'
             >
               <Button link={'/pendonor/profile'} className={'text-right'}>
                 Account
               </Button>
-              <Button className={'text-right'}>Logout</Button>
+              <Button className={'text-right'} onclick={() => logout()}>
+                Logout
+              </Button>
             </menu>
           </div>
         </nav>

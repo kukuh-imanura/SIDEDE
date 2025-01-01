@@ -3,9 +3,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const PublicRoute = ({ isLogin, access }) => {
   const redirectMap = {
-    admin: '/admin',
-    pelayanan: '/pelayanan',
-    pendonor: '/pendonor',
+    A: '/admin',
+    S: '/pelayanan',
+    D: '/pendonor',
   };
 
   return isLogin ? <Navigate to={redirectMap[access] || '/'} /> : <Outlet />;

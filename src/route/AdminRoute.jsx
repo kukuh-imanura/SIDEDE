@@ -13,14 +13,23 @@ const AdminRoute = ({ isLogin, access }) => {
   }
 
   const redirectMap = {
-    admin: <Outlet />,
-    pelayanan: <Navigate to='/pelayanan' />,
-    pendonor: <Navigate to='/pendonor' />,
+    A: <Outlet />,
+    S: <Navigate to='/pelayanan' />,
+    D: <Navigate to='/pendonor' />,
   };
 
   const toggleDropdown = () => {
     const elem = menuRef.current;
     elem.classList.toggle('hidden');
+  };
+
+  const logout = () => {
+    localStorage.removeItem('id');
+    localStorage.removeItem('akses');
+
+    alert('Logout Berhasil');
+
+    window.location.href = '/';
   };
 
   return (
@@ -69,7 +78,9 @@ const AdminRoute = ({ isLogin, access }) => {
                   <Button link={'admin/profile'} className={'text-right'}>
                     Account
                   </Button>
-                  <Button className={'text-right'}>Logout</Button>
+                  <Button className={'text-right'} onclick={() => logout()}>
+                    Logout
+                  </Button>
                 </menu>
               </div>
             </nav>

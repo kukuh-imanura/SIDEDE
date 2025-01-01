@@ -16,13 +16,13 @@ const Landing = () => {
 
   return (
     <>
-      <nav className='px-6 py-4 flex justify-between items-center sticky top-0 backdrop-blur-sm'>
+      <nav className='sticky top-0 flex items-center justify-between px-6 py-4 backdrop-blur-sm'>
         <span className='flex items-center gap-2'>
           <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
           <h2>UTD-PMI</h2>
         </span>
 
-        <nav className='hidden md:flex items-center'>
+        <nav className='items-center hidden md:flex'>
           <Button link='#MU'>Mobile Unit</Button>
           <Button link='#About'>Tentang Kami</Button>
           <Button link='#Contact'>Kontak</Button>
@@ -38,8 +38,8 @@ const Landing = () => {
           <FontAwesomeIcon icon={'fas fa-bars'} size='xl' />
         </Button>
 
-        <div className='w-full h-screen bg-light absolute top-0 left-0 hidden' ref={MobileMenuRef}>
-          <div className='px-6 py-4 flex justify-between items-center'>
+        <div className='absolute top-0 left-0 hidden w-full h-screen bg-light' ref={MobileMenuRef}>
+          <div className='flex items-center justify-between px-6 py-4'>
             <span className='flex items-center gap-2'>
               <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
               <h2>UTD-PMI</h2>
@@ -50,11 +50,11 @@ const Landing = () => {
             </Button>
           </div>
 
-          <nav className='flex flex-col px-6 py-10 gap-2'>
-            <Button link={'/daftar'} className='bg-brand text-light text-center'>
+          <nav className='flex flex-col gap-2 px-6 py-10'>
+            <Button link={'/daftar'} className='text-center bg-brand text-light'>
               Daftar
             </Button>
-            <Button link={'/login'} className='border-dark border mb-6 text-center'>
+            <Button link={'/login'} className='mb-6 text-center border border-dark'>
               Login
             </Button>
 
@@ -73,10 +73,10 @@ const Landing = () => {
 
       <section
         id='Hero'
-        className='flex flex-col items-center justify-center h-screen -mt-20 gap-4'
+        className='flex flex-col items-center justify-center h-screen gap-4 -mt-20'
       >
         <img
-          className='h-full absolute -z-10 grayscale brightness-125 blur-sm object-cover'
+          className='absolute object-cover h-full -z-10 grayscale brightness-125 blur-sm'
           src='/illustration/Blood donation-pana.png'
           alt='Blood Donor'
         />
@@ -89,10 +89,10 @@ const Landing = () => {
         <ButtonInstall />
       </section>
 
-      <section id='MU' className='py-20 px-10 flex flex-col items-center gap-10'>
+      <section id='MU' className='flex flex-col items-center gap-10 px-10 py-20'>
         <h2>Mobile Unit</h2>
 
-        <div className='overflow-x-auto w-full flex justify-center'>
+        <div className='flex justify-center w-full overflow-x-auto'>
           <table className='table-auto text-nowrap'>
             <colgroup>
               <col className='text-center' />
@@ -119,7 +119,7 @@ const Landing = () => {
         </div>
       </section>
 
-      <section id='About' className='flex flex-col lg:flex-row items-center justify-center px-10'>
+      <section id='About' className='flex flex-col items-center justify-center px-10 lg:flex-row'>
         <img
           className='object-cover sm:w-96'
           src='/illustration/Blood donation-amico (1).png'
@@ -141,8 +141,8 @@ const Landing = () => {
         </article>
       </section>
 
-      <section className='px-10 md:flex gap-10'>
-        <article className='space-y-3 pt-6'>
+      <section className='gap-10 px-10 md:flex'>
+        <article className='pt-6 space-y-3'>
           <h2 className='mb-6 text-center'>Visi</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum neque incidunt,
@@ -156,7 +156,7 @@ const Landing = () => {
           </p>
         </article>
 
-        <article className='space-y-3 pt-6'>
+        <article className='pt-6 space-y-3'>
           <h2 className='mb-6 text-center'>Misi</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum neque incidunt,
@@ -172,9 +172,9 @@ const Landing = () => {
       </section>
 
       <section className='p-10'>
-        <h2 className='text-center mb-10'>Tim Kami</h2>
+        <h2 className='mb-10 text-center'>Tim Kami</h2>
 
-        <div className='flex flex-wrap gap-12 justify-center'>
+        <div className='flex flex-wrap justify-center gap-12'>
           <CardProfile img='/profile/man.png' name='Ade Ikhsan Jaya S.Ap' desc='Kabid P2D2S' />
           <CardProfile img='/profile/woman.png' name='Nama' desc='jabatan' />
           <CardProfile />
@@ -187,10 +187,10 @@ const Landing = () => {
 
       <footer
         id='Contact'
-        className='bg-brand/10 p-10 pt-20 lg:pt-10 flex flex-col items-center text-center lg:text-left'
+        className='flex flex-col items-center p-10 pt-20 text-center bg-brand/10 lg:pt-10 lg:text-left'
       >
-        <div className='flex flex-col lg:flex-row justify-between gap-10 w-full'>
-          <span className='flex gap-2 h-fit items-center justify-center'>
+        <div className='flex flex-col justify-between w-full gap-10 lg:flex-row'>
+          <span className='flex items-center justify-center gap-2 h-fit'>
             <img className='w-12 h-12' src='/icon/icon-192x192.png' alt='Red Cross' />
             <p className='text-3xl font-extrabold'>UTD-PMI</p>
           </span>
@@ -231,10 +231,10 @@ const Landing = () => {
           </div>
         </div>
 
-        <hr className='my-6 border-dark/50 w-full' />
+        <hr className='w-full my-6 border-dark/50' />
 
         <a
-          className='text-center block'
+          className='block text-center'
           href='http://github.com/kukuh-imanura'
           target='_blank'
           rel='noopener noreferrer'

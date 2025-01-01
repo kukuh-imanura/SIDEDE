@@ -15,6 +15,11 @@ const NotFound = ({ text = 'Tidak Ditemukan', className }) => {
         link={'/'}
         onclick={() => {
           navigate(-1);
+
+          localStorage.removeItem('id');
+          localStorage.removeItem('akses');
+
+          window.location.href = '/';
         }}
       >
         Kembali
