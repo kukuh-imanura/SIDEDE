@@ -8,6 +8,8 @@ import NotFound from '../NotFound';
 const AdminRoute = ({ isLogin, access }) => {
   const menuRef = useRef();
 
+  const user = JSON.parse(localStorage.getItem('user')) || {};
+
   if (!isLogin) {
     return <Navigate to='/' />;
   }
@@ -24,8 +26,7 @@ const AdminRoute = ({ isLogin, access }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('id');
-    localStorage.removeItem('akses');
+    localStorage.removeItem('user');
 
     alert('Logout Berhasil');
 
@@ -67,8 +68,9 @@ const AdminRoute = ({ isLogin, access }) => {
               <div className='relative'>
                 <Button onclick={toggleDropdown} className={'flex items-center gap-2 text-right'}>
                   <FontAwesomeIcon icon={'fas fa-chevron-down'} />
-                  <p>User</p>
-                  <img className='w-6 h-6-' src='/profile/man.png' alt='Profile' />
+                  <p>{user?.username || 'User'}</p>
+
+                  <img className='w-6 h-6-' src='/profile/user.png' alt='Profile' />
                 </Button>
 
                 <menu

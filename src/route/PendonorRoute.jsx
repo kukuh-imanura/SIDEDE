@@ -23,8 +23,7 @@ const PendonorRoute = ({ isLogin, access }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('id');
-    localStorage.removeItem('akses');
+    localStorage.removeItem('user');
 
     alert('Logout Berhasil');
 

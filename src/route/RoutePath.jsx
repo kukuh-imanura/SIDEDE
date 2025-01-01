@@ -56,7 +56,8 @@ import Screening from '../pendonor/Screening';
 import ScreeningPendonor from '../pendonor/ScreeningPendonor';
 import HasilPemeriksaan from '../pendonor/HasilPemeriksaan';
 
-const access = localStorage.getItem('akses') || '';
+const user = JSON.parse(localStorage.getItem('user')) || {};
+const access = user.hak_akses || '';
 const isLogin = access ? true : false;
 
 const RoutePath = () => {

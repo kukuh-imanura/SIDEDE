@@ -13,11 +13,9 @@ const Login = () => {
 
   const submitLogin = async (data) => {
     try {
-      const res = await axios.post('https://sidede-api.vercel.app/auth', data);
-      const akses = res.data.result.hak_akses;
+      const res = await axios.post('https://sidede-api.vercel.app/hakakses/auth', data);
 
-      localStorage.setItem('id', res.data.result.id_akses);
-      localStorage.setItem('akses', akses);
+      localStorage.setItem('user', JSON.stringify(res.data.result));
 
       alert(res.data.message);
 
