@@ -1,18 +1,16 @@
 import PropTypes from 'prop-types';
 import { Navigate, Outlet } from 'react-router-dom';
 import Button from '../components/Button';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NotFound from '../NotFound';
+import axios from 'axios';
 
 const AdminRoute = ({ isLogin, access }) => {
   const menuRef = useRef();
+  const [data, setData] = useState();
 
   const user = JSON.parse(localStorage.getItem('user')) || {};
-
-  if (!isLogin) {
-    return <Navigate to='/' />;
-  }
 
   const redirectMap = {
     A: <Outlet />,
@@ -32,6 +30,24 @@ const AdminRoute = ({ isLogin, access }) => {
 
     window.location.href = '/';
   };
+
+  const getData = async () => {
+    try {
+      const res = await axios.get(`https://sidede-api.vercel.app/hakakses/${user.id_akses}`);
+      setData(res.data.result[0]);
+    } catch (err) {
+      console.error(err.message);
+      alert(err.response?.data.message);
+    }
+  };
+
+  useEffect(() => {
+    if (isLogin) getData();
+  }, []);
+
+  if (!isLogin) {
+    return <Navigate to='/' />;
+  }
 
   return (
     (
@@ -68,7 +84,7 @@ const AdminRoute = ({ isLogin, access }) => {
               <div className='relative'>
                 <Button onclick={toggleDropdown} className={'flex items-center gap-2 text-right'}>
                   <FontAwesomeIcon icon={'fas fa-chevron-down'} />
-                  <p>{user?.username || 'User'}</p>
+                  <p>{data?.username || 'User'}</p>
 
                   <img className='w-6 h-6-' src='/profile/user.png' alt='Profile' />
                 </Button>
