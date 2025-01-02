@@ -40,8 +40,7 @@ const Profile = () => {
 
   const ubahHakAkses = async (data) => {
     try {
-      data.foto = data.foto[0]?.name;
-      console.log(data);
+      data.foto = await data.foto[0]?.name;
 
       const res = await axios.patch(
         `https://sidede-api.vercel.app/hakakses/${user.id_akses}`,
@@ -69,7 +68,7 @@ const Profile = () => {
         action=''
       >
         <div className='relative flex flex-col items-center justify-center w-fit'>
-          <img className='w-48' src='/profile/man.png' alt='Profile' />
+          <img className='w-48' src='/profile/user.png' alt='Profile' />
 
           <span className='absolute p-2 rounded-full shadow-md bottom-2 right-3 bg-dark'>
             <input

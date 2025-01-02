@@ -2,11 +2,29 @@ import PropTypes from 'prop-types';
 import { Link, Navigate, Outlet } from 'react-router-dom';
 import Button from '../components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import NotFound from '../NotFound';
+import axios from 'axios';
 
 const PelayananRoute = ({ isLogin, access }) => {
   const menuRef = useRef();
+  const [data, setData] = useState();
+
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const getData = async () => {
+    try {
+      const res = await axios.get(`https://sidede-api.vercel.app/hakakses/${user.id_akses}`);
+      setData(res.data.result[0]);
+    } catch (err) {
+      console.error(err.message);
+      alert(err.response?.data.mesage);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   if (!isLogin) {
     return <Navigate to='/' />;
@@ -46,8 +64,8 @@ const PelayananRoute = ({ isLogin, access }) => {
             <div className='relative'>
               <Button onclick={toggleDropdown} className={'flex items-center gap-2 text-right'}>
                 <FontAwesomeIcon icon={'fas fa-chevron-down'} />
-                <p>User</p>
-                <img className='w-6 h-6-' src='/profile/man.png' alt='Profile' />
+                <p>{data?.username || 'User'}</p>
+                <img className='w-6 h-6-' src='/profile/user.png' alt='Profile' />
               </Button>
 
               <menu

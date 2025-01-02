@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import Button from '../components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const ProfilePelayanan = () => {
   const {
@@ -12,8 +13,10 @@ const ProfilePelayanan = () => {
   } = useForm({ mode: 'all' });
 
   const [isPass, setIsPass] = useState(true);
-
   const [isDisabled, setIsDisabled] = useState(true);
+  const [data, setData] = useState();
+
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const handleEnable = () => {
     setIsDisabled(false);
@@ -23,67 +26,97 @@ const ProfilePelayanan = () => {
     setIsPass(!isPass);
   };
 
-  const ubahHakAkses = (data) => {
+  const ubahHakAkses = async (data) => {
     console.log(data);
-    setIsDisabled(true);
+
+    try {
+      data.foto = await data.foto[0]?.name;
+      console.log('data');
+      console.log(data);
+
+      const res = await axios.patch(
+        `https://sidede-api.vercel.app/hakakses/${user.id_akses}`,
+        data
+      );
+      alert(res.data.message);
+      window.location.reload();
+
+      setIsDisabled(true);
+    } catch (err) {
+      console.error(err.message);
+      alert(err.response?.data.message);
+    }
   };
 
+  const getData = async () => {
+    try {
+      const res = await axios.get(`https://sidede-api.vercel.app/hakakses/${user.id_akses}`);
+      setData(res.data.result[0]);
+      localStorage.setItem('user', JSON.stringify(res.data.result[0]));
+    } catch (err) {
+      console.error(err.message);
+      alert(err.response?.data.message);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className='p-10 flex flex-col items-center gap-5'>
+    <div className='flex flex-col items-center gap-5 p-10'>
       <form
         onSubmit={handleSubmit(ubahHakAkses)}
-        className='flex flex-col gap-2 items-center'
+        className='flex flex-col items-center gap-2'
         action=''
       >
-        <div className='flex flex-col items-center justify-center relative w-fit'>
-          <img className='w-48' src='/profile/man.png' alt='Profile' />
+        <div className='relative flex flex-col items-center justify-center w-fit'>
+          <img className='w-48' src='/profile/user.png' alt='Profile' />
 
-          <span className='absolute bottom-2 right-3 bg-dark rounded-full p-2 shadow-md'>
+          <span className='absolute p-2 rounded-full shadow-md bottom-2 right-3 bg-dark'>
             <input
               id='foto'
               type='file'
-              className='file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark hidden'
-              disabled={isDisabled}
+              className='hidden file:px-3 file:py-2 file:rounded-md file:cursor-pointer file:border file:border-dark'
               {...register('foto')}
             />
 
-            <label htmlFor='foto' className='select-none cursor-pointer text-light'>
+            <label htmlFor='foto' className='cursor-pointer select-none text-light'>
               <FontAwesomeIcon icon={'fas fa-pencil'} size='xl' />
             </label>
           </span>
         </div>
 
-        <span className='flex justify-between items-center gap-2 w-full'>
+        <span className='flex items-center justify-between w-full gap-2'>
           <label htmlFor='username'>Username</label>
           <input
             id='username'
-            className='px-3 py-2 rounded-md border'
+            className='px-3 py-2 border rounded-md'
             type='text'
-            placeholder='user'
+            placeholder={data?.username}
             disabled={isDisabled}
-            {...register('username', { required: 'username wajib di isi' })}
+            {...register('username')}
           />
         </span>
         {errors.username && <p className='text-brand'>{errors.username.message}</p>}
 
-        <span className='flex justify-between items-center gap-2 w-full'>
+        <span className='flex items-center justify-between w-full gap-2'>
           <label htmlFor='password'>Password</label>
 
-          <div className='flex items-center relative'>
+          <div className='relative flex items-center'>
             <input
               id='password'
               placeholder='****'
               type={`${isPass ? 'password' : 'text'}`}
-              className='px-3 py-2 rounded-md w-full border'
+              className='w-full px-3 py-2 border rounded-md'
               disabled={isDisabled}
               {...register('password', {
-                required: 'password wajib di isi',
                 minLength: { value: 8, message: ' minimal 8 karakter' },
               })}
             />
             <span
               onClick={showPassword}
-              className='p-2 cursor-pointer h-10 w-10 rounded-md absolute right-0 flex items-center justify-center'
+              className='absolute right-0 flex items-center justify-center w-10 h-10 p-2 rounded-md cursor-pointer'
             >
               <FontAwesomeIcon icon={`fas ${isPass ? 'fa-eye' : 'fa-eye-slash'}`} />
             </span>

@@ -56,11 +56,32 @@ import Screening from '../pendonor/Screening';
 import ScreeningPendonor from '../pendonor/ScreeningPendonor';
 import HasilPemeriksaan from '../pendonor/HasilPemeriksaan';
 
+import OfflinePage from '../OfflinePage';
+import { useEffect, useState } from 'react';
+
 const user = JSON.parse(localStorage.getItem('user')) || {};
 const access = user.hak_akses || '';
 const isLogin = access ? true : false;
 
 const RoutePath = () => {
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  if (!isOnline) {
+    return <OfflinePage />;
+  }
   return (
     <Routes>
       <Route element={<PublicRoute isLogin={isLogin} access={access} />}>
