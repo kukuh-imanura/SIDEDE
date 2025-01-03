@@ -39,6 +39,7 @@ const Pendonor = () => {
   };
 
   const formatDate = (date) => {
+    if (!date) return;
     const formattedDate = dayjs(date).add(8, 'hour').format('YYYY-MM-DD');
     return formattedDate;
   };
@@ -81,7 +82,7 @@ const Pendonor = () => {
         </Button>
       </span>
 
-      <div className='overflow-x-auto w-full'>
+      <div className='w-full overflow-x-auto'>
         <table className='table-auto text-nowrap'>
           <thead>
             <tr>
@@ -136,7 +137,7 @@ const Pendonor = () => {
         </table>
       </div>
 
-      <span className='flex gap-2 w-full justify-center'>
+      <span className='flex justify-center w-full gap-2'>
         <Button onclick={() => setPage(pagination.prev)}>
           <FontAwesomeIcon icon={'fas fa-arrow-left'} />
           &nbsp;Sebelumnya

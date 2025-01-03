@@ -46,7 +46,7 @@ export const ButtonInstall = () => {
   return (
     <>
       {isInstallable && (
-        <button className='bg-brand text-light px-3 py-2 rounded-md' onClick={handleInstallClick}>
+        <button className='px-3 py-2 rounded-md bg-brand text-light' onClick={handleInstallClick}>
           Download
         </button>
       )}

@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const TambahPemeriksaan = () => {
   const {
@@ -7,84 +9,98 @@ const TambahPemeriksaan = () => {
     formState: { errors },
   } = useForm({ mode: 'all' });
 
-  const tambahPemeriksaan = (data) => {
-    console.log(data);
+  const location = useLocation();
+  const id = location.state.id || '';
+  const navigate = useNavigate();
+
+  const tambahPemeriksaan = async (data) => {
+    try {
+      data.id_pendaftaran = id;
+      const res = await axios.post('https://sidede-api.vercel.app/pemeriksaan', data);
+      alert(res.data.message);
+      navigate('/admin/pemeriksaan');
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data.message);
+    }
   };
 
   return (
-    <div className='p-10 flex flex-col gap-5 items-center'>
+    <div className='flex flex-col items-center gap-5 p-10'>
       <hgroup className='text-center'>
         <h2>Tambah Data Pemeriksaan Kesehatan</h2>
-        <p>asep 1234</p>
+        <p>ID Pemeriksaan : {id}</p>
       </hgroup>
 
-      <form onSubmit={handleSubmit(tambahPemeriksaan)} className='flex flex-col gap-2 items-center'>
-        <span className='flex flex-col w-full'>
-          <label htmlFor='petugas'>Nama Petugas</label>
-          <input
-            id='petugas'
-            type='text'
-            className='px-3 py-2 rounded-md'
-            {...register('petugas', {
-              required: 'wajib di isi',
-            })}
-          />
-          {errors.petugas && <p className='text-brand'>{errors.petugas.message}</p>}
-        </span>
-
-        <div className='flex gap-6 w-full'>
+      <form onSubmit={handleSubmit(tambahPemeriksaan)} className='flex flex-col items-center gap-2'>
+        <div className='flex w-full gap-6'>
           <span className='flex flex-col w-full'>
-            <label htmlFor='tensi'>Tekanan Darah</label>
+            <label htmlFor='nama_petugas'>Nama Petugas</label>
             <input
-              id='tensi'
+              id='nama_petugas'
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('tensi', {
+              {...register('nama_petugas', {
                 required: 'wajib di isi',
               })}
             />
-            {errors.tensi && <p className='text-brand'>{errors.tensi.message}</p>}
-          </span>
-
-          <span className='flex flex-col w-full'>
-            <label htmlFor='nadi'>Denyut Nadi</label>
-            <input
-              id='nadi'
-              type='text'
-              className='px-3 py-2 rounded-md'
-              {...register('nadi', {
-                required: 'wajib di isi',
-              })}
-            />
-            {errors.nadi && <p className='text-brand'>{errors.nadi.message}</p>}
+            {errors.nama_petugas && <p className='text-brand'>{errors.nama_petugas.message}</p>}
           </span>
         </div>
 
-        <div className='flex gap-6 w-full'>
+        <div className='flex w-full gap-6'>
           <span className='flex flex-col w-full'>
-            <label htmlFor='berat'>Berat Badan</label>
+            <label htmlFor='tekanan_darah'>Tekanan Darah</label>
             <input
-              id='berat'
+              id='tekanan_darah'
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('berat', {
+              {...register('tekanan_darah', {
                 required: 'wajib di isi',
               })}
             />
-            {errors.berat && <p className='text-brand'>{errors.berat.message}</p>}
+            {errors.tekanan_darah && <p className='text-brand'>{errors.tekanan_darah.message}</p>}
           </span>
 
           <span className='flex flex-col w-full'>
-            <label htmlFor='tinggi'>Tinggi Badan</label>
+            <label htmlFor='denyut_nadi'>Denyut Nadi</label>
             <input
-              id='tinggi'
+              id='denyut_nadi'
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('tinggi', {
+              {...register('denyut_nadi', {
                 required: 'wajib di isi',
               })}
             />
-            {errors.tinggi && <p className='text-brand'>{errors.tinggi.message}</p>}
+            {errors.denyut_nadi && <p className='text-brand'>{errors.denyut_nadi.message}</p>}
+          </span>
+        </div>
+
+        <div className='flex w-full gap-6'>
+          <span className='flex flex-col w-full'>
+            <label htmlFor='berat_badan'>Berat Badan</label>
+            <input
+              id='berat_badan'
+              type='text'
+              className='px-3 py-2 rounded-md'
+              {...register('berat_badan', {
+                required: 'wajib di isi',
+              })}
+            />
+            {errors.berat_badan && <p className='text-brand'>{errors.berat_badan.message}</p>}
+          </span>
+
+          <span className='flex flex-col w-full'>
+            <label htmlFor='tinggi_badan'>Tinggi Badan</label>
+            <input
+              id='tinggi_badan'
+              type='text'
+              className='px-3 py-2 rounded-md'
+              {...register('tinggi_badan', {
+                required: 'wajib di isi',
+              })}
+            />
+            {errors.tinggi_badan && <p className='text-brand'>{errors.tinggi_badan.message}</p>}
           </span>
 
           <span className='flex flex-col w-full'>
@@ -102,34 +118,32 @@ const TambahPemeriksaan = () => {
         </div>
 
         <span className='flex flex-col w-full'>
-          <label htmlFor='keadaan'>Keadaan Umum</label>
+          <label htmlFor='keadaan_umum'>Keadaan Umum</label>
           <textarea
-            id='keadaan'
+            id='keadaan_umum'
             type='text'
             className='px-3 py-2 rounded-md'
-            {...register('keadaan', {
+            {...register('keadaan_umum', {
               required: 'wajib di isi',
             })}
           />
-          {errors.keadaan && <p className='text-brand'>{errors.keadaan.message}</p>}
+          {errors.keadaan_umum && <p className='text-brand'>{errors.keadaan_umum.message}</p>}
         </span>
 
         <span className='flex flex-col w-full'>
-          <label htmlFor='riwayat'>Riwayat Medis</label>
+          <label htmlFor='riwayat_medis'>Riwayat Medis</label>
           <textarea
-            id='riwayat'
+            id='riwayat_medis'
             type='text'
             className='px-3 py-2 rounded-md'
-            {...register('riwayat', {
-              required: 'wajib di isi',
-            })}
+            {...register('riwayat_medis')}
           />
-          {errors.riwayat && <p className='text-brand'>{errors.riwayat.message}</p>}
+          {errors.riwayat_medis && <p className='text-brand'>{errors.riwayat_medis.message}</p>}
         </span>
 
         <input
           type='submit'
-          className='px-3 py-2 mt-4 rounded bg-dark text-light w-fit cursor-pointer'
+          className='px-3 py-2 mt-4 rounded cursor-pointer bg-dark text-light w-fit'
         />
       </form>
     </div>

@@ -88,40 +88,42 @@ const DataScreening = () => {
       </span>
 
       <div className='flex w-full overflow-x-auto'>
-        <table className='table-auto text-nowrap'>
+        <table className='table-auto text-nowrap h-fit'>
           <thead>
             <tr>
               <th rowSpan={2}>No</th>
               <th rowSpan={2}>Pertanyaan</th>
 
-              {Object.keys(jawaban).map((v, i) => {
-                return (
-                  <th key={i} className='border-none'>
-                    {v}
-                  </th>
-                );
-              })}
+              {jawaban &&
+                Object.keys(jawaban).map((v, i) => {
+                  return (
+                    <th key={i} className='border-none'>
+                      {v}
+                    </th>
+                  );
+                })}
             </tr>
 
             <tr>
-              {Object.keys(jawaban).map((v, i) => {
-                return (
-                  <td key={i}>
-                    <span className='flex gap-1'>
-                      {/* <Button
+              {jawaban &&
+                Object.keys(jawaban).map((v, i) => {
+                  return (
+                    <td key={i}>
+                      <span className='flex gap-1'>
+                        {/* <Button
                         className={'border border-dark'}
                         link={'/admin/screening/ubah'}
                         state={{ id: v }}
                       >
                         <FontAwesomeIcon icon={'fas fa-pencil'} />
                       </Button> */}
-                      <Button className={'bg-brand text-light'} onclick={() => deleteJawaban(v)}>
-                        <FontAwesomeIcon icon={'fas fa-trash-can'} />
-                      </Button>
-                    </span>
-                  </td>
-                );
-              })}
+                        <Button className={'bg-brand text-light'} onclick={() => deleteJawaban(v)}>
+                          <FontAwesomeIcon icon={'fas fa-trash-can'} />
+                        </Button>
+                      </span>
+                    </td>
+                  );
+                })}
             </tr>
           </thead>
 
@@ -138,20 +140,21 @@ const DataScreening = () => {
                     <td>{counter++}</td>
                     <td>{item.pertanyaan}</td>
 
-                    {Object.keys(jawaban).map((key) => {
-                      const jawabanForPertanyaan = jawaban[key]?.find(
-                        (ans) => ans.id_pertanyaan === item.id_pertanyaan
-                      );
+                    {jawaban &&
+                      Object.keys(jawaban).map((key) => {
+                        const jawabanForPertanyaan = jawaban[key]?.find(
+                          (ans) => ans.id_pertanyaan === item.id_pertanyaan
+                        );
 
-                      return (
-                        <td key={key}>
-                          {(() => {
-                            if (!jawabanForPertanyaan) return '-';
-                            return jawabanForPertanyaan.jawaban === 1 ? 'Ya' : 'Tidak';
-                          })()}
-                        </td>
-                      );
-                    })}
+                        return (
+                          <td key={key}>
+                            {(() => {
+                              if (!jawabanForPertanyaan) return '-';
+                              return jawabanForPertanyaan.jawaban === 1 ? 'Ya' : 'Tidak';
+                            })()}
+                          </td>
+                        );
+                      })}
                   </tr>
                 ))}
               </React.Fragment>

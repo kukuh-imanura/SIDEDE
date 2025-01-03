@@ -37,6 +37,7 @@ const Pendaftaran = () => {
   };
 
   const formatDate = (date) => {
+    if (!date) return;
     const formattedDate = dayjs(date).add(8, 'hour').format('YYYY-MM-DD');
     return formattedDate;
   };
