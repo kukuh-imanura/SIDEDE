@@ -33,6 +33,7 @@ const AdminRoute = ({ isLogin, access }) => {
 
   const getData = async () => {
     try {
+      if (!user) return;
       const res = await axios.get(`https://sidede-api.vercel.app/hakakses/${user.id_akses}`);
       setData(res.data.result[0]);
     } catch (err) {

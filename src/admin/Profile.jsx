@@ -56,6 +56,21 @@ const Profile = () => {
     }
   };
 
+  const deleteData = async (id) => {
+    try {
+      const verif = confirm('Apakah anda ingin menghapus akun?');
+      if (!verif) return;
+
+      const res = await axios.delete(`https://sidede-api.vercel.app/hakakses/${id}`);
+      alert(res.data.message);
+      localStorage.removeItem('user');
+      window.location.reload();
+    } catch (err) {
+      console.error(err.message);
+      alert(err.response?.data.message);
+    }
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -122,7 +137,9 @@ const Profile = () => {
         {errors.password && <p className='text-brand'>{errors.password.message}</p>}
 
         <span className={`flex gap-2 justify-center mt-4 ${!isDisabled && 'hidden'}`}>
-          <Button className={'bg-brand text-light'}>Hapus</Button>
+          <Button className={'bg-brand text-light'} onclick={() => deleteData(data.id_akses)}>
+            Hapus
+          </Button>
           <Button onclick={handleEnable} className={'border border-dark'}>
             Ubah
           </Button>

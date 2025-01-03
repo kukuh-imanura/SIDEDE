@@ -61,7 +61,6 @@ const ProfilePelayanan = () => {
 
   const deleteData = async (id) => {
     try {
-      console.log(id);
       const verif = confirm('Apakah anda ingin menghapus akun?');
       if (!verif) return;
 

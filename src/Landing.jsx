@@ -3,16 +3,41 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button, { ButtonInstall } from './components/Button';
 import { CardProfile } from './components/Card';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+import dayjs from 'dayjs';
 // import { useForm } from 'react-hook-form';
 
 const Landing = () => {
   const MobileMenuRef = useRef();
+  const [data, setData] = useState([]);
+  const limit = 7;
 
   const toggleMenu = () => {
     const elem = MobileMenuRef.current;
     elem.classList.toggle('hidden');
   };
+
+  const getData = async () => {
+    try {
+      const res = await axios.get(
+        `https://sidede-api.vercel.app/mobileunit?limit=${limit}&filter=new`
+      );
+      setData(res.data.result || []);
+    } catch (err) {
+      console.error(err.message);
+      alert(err.response?.data.message);
+    }
+  };
+
+  const formatDate = (date) => {
+    const formattedDate = dayjs(date).add(8, 'hour').format('YYYY-MM-DD');
+    return formattedDate;
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -94,26 +119,30 @@ const Landing = () => {
 
         <div className='flex justify-center w-full overflow-x-auto'>
           <table className='table-auto text-nowrap'>
-            <colgroup>
-              <col className='text-center' />
-              <col />
-              <col />
-            </colgroup>
-
             <thead>
               <tr>
                 <th>No</th>
-                <th>Lokasi</th>
                 <th>Waktu</th>
+                <th>Lokasi</th>
               </tr>
             </thead>
 
             <tbody>
-              <tr>
-                <td>1.</td>
-                <td>Desa Lab. Jambu</td>
-                <td>Senin, 21 Oktober 2024</td>
-              </tr>
+              {data && data.length > 0 ? (
+                data.map((v, i) => (
+                  <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td>{formatDate(v.jadwal)}</td>
+                    <td>{v.lokasi}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={3} style={{ textAlign: 'center' }}>
+                    Tidak ada data terbaru
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
