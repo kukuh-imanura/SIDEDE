@@ -4,7 +4,7 @@ import Button from './components/Button';
 const OfflinePage = () => {
   return (
     <div className={`flex flex-col justify-center items-center gap-5 w-full h-screen bg-brand`}>
-      <h1 className='text-ligt'>Sepertinya anda sedang offline</h1>
+      <h1 className='text-light'>Sepertinya anda sedang offline</h1>
       <Button
         className={'text-light bg-light/20'}
         link={'/'}

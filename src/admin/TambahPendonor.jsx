@@ -72,10 +72,10 @@ const TambahPendonor = () => {
   };
 
   return (
-    <div className='p-10 flex flex-col gap-5 items-center'>
+    <div className='flex flex-col items-center gap-5 p-10'>
       <h2>Tambah Data Pendonor</h2>
 
-      <form onSubmit={handleSubmit(tambahPendonor)} className='flex flex-col gap-2 items-center'>
+      <form onSubmit={handleSubmit(tambahPendonor)} className='flex flex-col items-center gap-2'>
         <div className='flex w-full gap-6'>
           <span className='flex flex-col w-full'>
             <label htmlFor='foto'>Foto</label>
@@ -107,11 +107,11 @@ const TambahPendonor = () => {
           <div className='flex flex-col w-full'>
             <label htmlFor='password'>Password</label>
 
-            <div className='w-full flex items-center relative'>
+            <div className='relative flex items-center w-full'>
               <input
                 id='password'
                 type={`${isPass ? 'password' : 'text'}`}
-                className='px-3 py-2 rounded-md w-full'
+                className='w-full px-3 py-2 rounded-md'
                 {...register('password', {
                   required: 'password wajib di isi',
                   minLength: { value: 8, message: ' minimal 8 karakter' },
@@ -119,7 +119,7 @@ const TambahPendonor = () => {
               />
               <span
                 onClick={showPassword}
-                className='p-2 cursor-pointer h-10 w-10 rounded-md absolute right-0 flex items-center justify-center'
+                className='absolute right-0 flex items-center justify-center w-10 h-10 p-2 rounded-md cursor-pointer'
               >
                 <FontAwesomeIcon icon={`fas ${isPass ? 'fa-eye' : 'fa-eye-slash'}`} />
               </span>
@@ -243,7 +243,7 @@ const TambahPendonor = () => {
           <select
             name='pekerjaan'
             id='pekerjaan'
-            className='px-3 py-2 rounded-md w-full'
+            className='w-full px-3 py-2 rounded-md'
             {...register('pekerjaan', { required: 'pekerjaan wajib di isi' })}
           >
             <option value='' hidden>
@@ -259,7 +259,7 @@ const TambahPendonor = () => {
           </select>
         </span>
 
-        <div className='lg:flex w-full gap-6'>
+        <div className='flex flex-col w-full gap-2 lg:gap-6 lg:flex-row'>
           <span className='flex flex-col w-full'>
             <label htmlFor='kecamatan'>Kecamatan</label>
             <input
@@ -359,7 +359,7 @@ const TambahPendonor = () => {
 
         <input
           type='submit'
-          className='px-3 py-2 mt-4 rounded bg-dark text-light w-fit cursor-pointer'
+          className='px-3 py-2 mt-4 rounded cursor-pointer bg-dark text-light w-fit'
         />
       </form>
     </div>

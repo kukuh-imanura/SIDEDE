@@ -42,11 +42,11 @@ const UbahPendonor = () => {
 
   const getData = async () => {
     try {
-      const pendonor = await axios.get(`http://localhost:3000/pendonor/${nik}`);
+      const pendonor = await axios.get(`https://sidede-api.vercel.app/pendonor/${nik}`);
       const data = pendonor.data.result[0];
       setData(data);
 
-      const akses = await axios.get(`http://localhost:3000/hakakses/${data.id_akses}`);
+      const akses = await axios.get(`https://sidede-api.vercel.app/hakakses/${data.id_akses}`);
       setData((prev) => ({
         ...prev,
         ...akses.data.result[0],
@@ -87,10 +87,10 @@ const UbahPendonor = () => {
   }, []);
 
   return (
-    <div className='p-10 flex flex-col gap-5 items-center'>
+    <div className='flex flex-col items-center gap-5 p-10'>
       <h2>Ubah Data Pendonor</h2>
 
-      <form onSubmit={handleSubmit(ubahPendonor)} className='flex flex-col gap-2 items-center'>
+      <form onSubmit={handleSubmit(ubahPendonor)} className='flex flex-col items-center gap-2'>
         <div className='flex w-full gap-6'>
           <span className='flex flex-col w-full'>
             <label htmlFor='foto'>Foto</label>
@@ -121,18 +121,18 @@ const UbahPendonor = () => {
           <div className='flex flex-col w-full'>
             <label htmlFor='password'>Password</label>
 
-            <div className='w-full flex items-center relative'>
+            <div className='relative flex items-center w-full'>
               <input
                 id='password'
                 type={`${isPass ? 'password' : 'text'}`}
-                className='px-3 py-2 rounded-md w-full'
+                className='w-full px-3 py-2 rounded-md'
                 {...register('password', {
                   minLength: { value: 8, message: ' minimal 8 karakter' },
                 })}
               />
               <span
                 onClick={showPassword}
-                className='p-2 cursor-pointer h-10 w-10 rounded-md absolute right-0 flex items-center justify-center'
+                className='absolute right-0 flex items-center justify-center w-10 h-10 p-2 rounded-md cursor-pointer'
               >
                 <FontAwesomeIcon icon={`fas ${isPass ? 'fa-eye' : 'fa-eye-slash'}`} />
               </span>
@@ -171,15 +171,15 @@ const UbahPendonor = () => {
           </span>
 
           <span className='flex flex-col w-full'>
-            <label htmlFor='nkd'>Nomor Kartu Donor</label>
+            <label htmlFor='no_kartu'>Nomor Kartu Donor</label>
             <input
-              id='nkd'
+              id='no_kartu'
               placeholder={data?.no_kartu}
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('nkd')}
+              {...register('no_kartu')}
             />
-            {errors.nkd && <p className='text-brand'>{errors.nkd.message}</p>}
+            {errors.no_kartu && <p className='text-brand'>{errors.no_kartu.message}</p>}
           </span>
         </div>
 
@@ -200,41 +200,41 @@ const UbahPendonor = () => {
 
           <div className='flex gap-6'>
             <label htmlFor='idlaki'>
-              <input type='radio' value='l' id='idlaki' {...register('jk')} />
+              <input type='radio' value='L' id='idlaki' {...register('jenis_kelamin')} />
               &nbsp;Laki
             </label>
 
             <label htmlFor='idperempuan'>
-              <input type='radio' value='p' id='idperempuan' {...register('jk')} />
+              <input type='radio' value='P' id='idperempuan' {...register('jenis_kelamin')} />
               &nbsp;Perempuan
             </label>
           </div>
 
-          {errors.jk && <p className='text-brand'>{errors.jk.message}</p>}
+          {errors.jenis_kelamin && <p className='text-brand'>{errors.jenis_kelamin.message}</p>}
         </div>
 
         <div className='flex w-full gap-6'>
           <span className='flex flex-col w-full'>
-            <label htmlFor='tempatLhr'>Tempat Lahir</label>
+            <label htmlFor='tempat_lahir'>Tempat Lahir</label>
             <input
-              id='tempatLhr'
+              id='tempat_lahir'
               placeholder={data?.tempat_lahir}
               type='text'
               className='px-3 py-2 rounded-md'
-              {...register('tempatLhr')}
+              {...register('tempat_lahir')}
             />
-            {errors.tempatLhr && <p className='text-brand'>{errors.tempatLhr.message}</p>}
+            {errors.tempat_lahir && <p className='text-brand'>{errors.tempat_lahir.message}</p>}
           </span>
 
           <span className='flex flex-col w-full'>
-            <label htmlFor='tglLhr'>Tanggal Lahir</label>
+            <label htmlFor='tgl_lahir'>Tanggal Lahir</label>
             <input
-              id='tglLhr'
+              id='tgl_lahir'
               type='date'
               className='px-3 py-2 rounded-md'
-              {...register('tglLhr')}
+              {...register('tgl_lahir')}
             />
-            {errors.tglLhr && <p className='text-brand'>{errors.tglLhr.message}</p>}
+            {errors.tgl_lahir && <p className='text-brand'>{errors.tgl_lahir.message}</p>}
           </span>
         </div>
 
@@ -243,7 +243,7 @@ const UbahPendonor = () => {
           <select
             name='pekerjaan'
             id='pekerjaan'
-            className='px-3 py-2 rounded-md w-full'
+            className='w-full px-3 py-2 rounded-md'
             {...register('pekerjaan')}
           >
             <option value='' hidden>
@@ -259,7 +259,7 @@ const UbahPendonor = () => {
           </select>
         </span>
 
-        <div className='lg:flex w-full gap-6'>
+        <div className='w-full gap-6 lg:flex'>
           <span className='flex flex-col w-full'>
             <label htmlFor='kecamatan'>Kecamatan</label>
             <input
@@ -312,29 +312,29 @@ const UbahPendonor = () => {
             </span>
 
             <span className='flex flex-col w-full'>
-              <label htmlFor='telpRmh'>Telpon Rumah</label>
+              <label htmlFor='telp_rumah'>Telpon Rumah</label>
               <input
-                id='telpRmh'
+                id='telp_rumah'
                 placeholder={data?.telp_rumah}
                 type='text'
                 className='px-3 py-2 rounded-md'
-                {...register('telpRmh')}
+                {...register('telp_rumah')}
               />
-              {errors.telpRmh && <p className='text-brand'>{errors.telpRmh.message}</p>}
+              {errors.telp_rumah && <p className='text-brand'>{errors.telp_rumah.message}</p>}
             </span>
           </div>
 
           <div className='w-full space-y-2'>
             <span className='flex flex-col w-full'>
-              <label htmlFor='almKantor'>Alamat Kantor</label>
+              <label htmlFor='alamat_kantor'>Alamat Kantor</label>
               <textarea
-                id='almKantor'
+                id='alamat_kantor'
                 placeholder={data?.alamat_kantor}
                 type='text'
                 className='px-3 py-2 rounded-md'
-                {...register('almKantor')}
+                {...register('alamat_kantor')}
               />
-              {errors.almKantor && <p className='text-brand'>{errors.almKantor.message}</p>}
+              {errors.alamat_kantor && <p className='text-brand'>{errors.alamat_kantor.message}</p>}
             </span>
 
             <span className='flex flex-col w-full'>
@@ -353,7 +353,7 @@ const UbahPendonor = () => {
 
         <input
           type='submit'
-          className='px-3 py-2 mt-4 rounded bg-dark text-light w-fit cursor-pointer'
+          className='px-3 py-2 mt-4 rounded cursor-pointer bg-dark text-light w-fit'
         />
       </form>
     </div>
