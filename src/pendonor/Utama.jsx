@@ -1,18 +1,70 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../components/Button';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 
 const Utama = () => {
+  const [mobileUnit, setMobileUnit] = useState([]);
+  const [pendaftaran, setPendaftaran] = useState([]);
+  const [pagination, setPagination] = useState([]);
+  const [page, setPage] = useState(1);
+  const limit = 7;
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  const id_akses = user.id_akses;
+
+  const getMobileUnit = async () => {
+    try {
+      const res = await axios.get(
+        `https://sidede-api.vercel.app/mobileunit?limit=${limit}&filter=new`
+      );
+      setMobileUnit(res.data.result || []);
+    } catch (err) {
+      console.error(err.message);
+      alert(err.response?.data.message);
+    }
+  };
+
+  const getPendaftaran = async () => {
+    try {
+      const pendonorRes = await axios.get(
+        `https://sidede-api.vercel.app/pendonor?id_akses=${id_akses}`
+      );
+      const nik = pendonorRes.data.result[0].nik;
+
+      const res = await axios.get(
+        `https://sidede-api.vercel.app/pendaftaran?limit=${limit}&page=${page}&nik=${nik}`
+      );
+      setPendaftaran(res.data.result || []);
+      setPagination(res.data.pagination || {});
+    } catch (err) {
+      console.error(err.message);
+      alert(err.response?.data.message);
+    }
+  };
+
+  useEffect(() => {
+    getMobileUnit();
+    getPendaftaran();
+  }, []);
+
+  const formatDate = (date) => {
+    const formattedDate = dayjs(date).add(8, 'hour').format('YYYY-MM-DD');
+    return formattedDate;
+  };
+
   return (
-    <div className='p-10 flex flex-col gap-5 items-center'>
-      <span className='text-center flex flex-col items-center gap-2'>
+    <div className='flex flex-col items-center gap-5 p-10'>
+      <span className='flex flex-col items-center gap-2 text-center'>
         <h2>Data Riwayat Donor</h2>
         <Button link={'/pendonor/donor'} className={'bg-dark text-light w-fit'}>
           Donor
         </Button>
       </span>
 
-      <div className='overflow-x-auto w-full'>
-        <table className='table-auto text-nowrap mx-auto'>
+      <div className='w-full overflow-x-auto'>
+        <table className='mx-auto table-auto text-nowrap'>
           <thead>
             <tr>
               <th>No</th>
@@ -28,75 +80,78 @@ const Utama = () => {
           </thead>
 
           <tbody>
-            <tr>
-              <td>1.</td>
-              <td>
-                <span className='flex gap-1'>
-                  <Button link={'/pendonor/datascreening'} className={'border border-dark'}>
-                    <FontAwesomeIcon icon={'fas fa-check-double'} />
-                  </Button>
-                  <Button link={'/pendonor/pemeriksaan'} className={'border border-dark'}>
-                    <FontAwesomeIcon icon={'fas fa-stethoscope'} />
-                  </Button>
-                </span>
-              </td>
-              <td>Diproses</td>
-              <td>1234</td>
-              <td>4</td>
-              <td>08:00, 4 Desember 2024</td>
-              <td>Kantor UTD-PMI</td>
-              <td>Sukarela</td>
-              <td>4 Februari 2025</td>
-            </tr>
+            {pendaftaran?.map((v, i) => {
+              return (
+                <tr key={i}>
+                  <td>{(page - 1) * limit + (i + 1)}</td>
+                  <td>
+                    <span className='flex gap-1'>
+                      <Button link={'/pendonor/datascreening'} className={'border border-dark'}>
+                        <FontAwesomeIcon icon={'fas fa-check-double'} />
+                      </Button>
+                      <Button link={'/pendonor/pemeriksaan'} className={'border border-dark'}>
+                        <FontAwesomeIcon icon={'fas fa-stethoscope'} />
+                      </Button>
+                    </span>
+                  </td>
+                  <td>{v.status == 'P' ? 'Diproses' : v.status == 'A' ? 'Diterima' : 'Ditolak'}</td>
+                  <td>{v.id_pendaftaran}</td>
+                  <td>{v.donor_ke}</td>
+                  <td>{formatDate(v.tgl_donor)}</td>
+                  <td>{v.lokasi}</td>
+                  <td>{v.tippe}</td>
+                  <td>{dayjs(v.tgl_donor).add(2, 'month').format('YYYY-MM-DD')}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
 
-      <span className='flex gap-2 w-full justify-center'>
-        <Button>
+      <span className='flex justify-center w-full gap-2'>
+        <Button onclick={() => setPage(pagination?.prev)}>
           <FontAwesomeIcon icon={'fas fa-arrow-left'} />
           &nbsp;Sebelumnya
         </Button>
-        <Button>
+        <Button onclick={() => setPage(pagination?.next)}>
           Berikutnya&nbsp;
           <FontAwesomeIcon icon={'fas fa-arrow-right'} />
         </Button>
       </span>
 
-      <hr className='border-dark w-full my-10' />
+      <hr className='w-full my-10 border-dark' />
 
       <h2>Jadwal Mobile Unit</h2>
 
-      <div className='w-full overflow-auto'>
-        <table className='table-auto text-nowrap mx-auto'>
+      <div className='flex justify-center w-full overflow-x-auto'>
+        <table className='table-auto text-nowrap'>
           <thead>
             <tr>
               <th>No</th>
-              <th>Lokasi</th>
               <th>Waktu</th>
+              <th>Lokasi</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr>
-              <td>1.</td>
-              <td>Desa Lopok</td>
-              <td>4 Februari 2025</td>
-            </tr>
+            {mobileUnit && mobileUnit.length > 0 ? (
+              mobileUnit.map((v, i) => (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>{formatDate(v.jadwal)}</td>
+                  <td>{v.lokasi}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={3} style={{ textAlign: 'center' }}>
+                  Tidak ada data terbaru
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
-
-      <span className='flex gap-2 w-full justify-center'>
-        <Button>
-          <FontAwesomeIcon icon={'fas fa-arrow-left'} />
-          &nbsp;Sebelumnya
-        </Button>
-        <Button>
-          Berikutnya&nbsp;
-          <FontAwesomeIcon icon={'fas fa-arrow-right'} />
-        </Button>
-      </span>
     </div>
   );
 };

@@ -271,7 +271,7 @@ const ProfilePendonor = () => {
               id='tgl_lahir'
               placeholder={formatDate(data?.tgl_lahir)}
               type={isDisabled ? 'text' : 'date'}
-              className={'px-3 py-2 rounded-md'}
+              className={'px-3 py-2 rounded-md w-full bg-white'}
               {...register('tgl_lahir')}
             />
             {errors.tgl_lahir && <p className='text-brand'>{errors.tgl_lahir.message}</p>}
@@ -284,7 +284,7 @@ const ProfilePendonor = () => {
             disabled={isDisabled}
             name='pekerjaan'
             id='pekerjaan'
-            className='w-full px-3 py-2 rounded-md disabled:bg-light'
+            className='w-full px-3 py-2 bg-white rounded-md disabled:bg-light'
             {...register('pekerjaan')}
           >
             <option value='' hidden>
