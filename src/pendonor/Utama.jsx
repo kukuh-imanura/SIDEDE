@@ -99,7 +99,7 @@ const Utama = () => {
                   <td>{v.donor_ke}</td>
                   <td>{formatDate(v.tgl_donor)}</td>
                   <td>{v.lokasi}</td>
-                  <td>{v.tippe}</td>
+                  <td>{v.tipe == 'S' ? 'Sukarela' : 'Keluarga'}</td>
                   <td>{dayjs(v.tgl_donor).add(2, 'month').format('YYYY-MM-DD')}</td>
                 </tr>
               );
