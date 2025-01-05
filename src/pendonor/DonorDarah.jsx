@@ -378,7 +378,7 @@ const DonorDarah = () => {
             <select
               name='tipe'
               id='tipe'
-              className='w-full px-3 py-2 rounded-md'
+              className='w-full px-3 py-2 rounded-md bg-white'
               {...register('tipe', { required: 'wajib di isi' })}
             >
               <option value='' hidden>
