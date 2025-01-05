@@ -99,10 +99,10 @@ const DashboardPelayanan = () => {
 
       if (status === 'D') {
         alasan_penolakan = prompt('Alasan penolakan?');
-        console.log(alasan_penolakan);
       }
 
-      const data = { status, alasan: alasan_penolakan };
+      const data = { status, alasan_penolakan };
+      console.log(data);
 
       const res = await axios.patch(`https://sidede-api.vercel.app/pendaftaran/${id}`, data);
       alert(res.data.message);
