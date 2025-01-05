@@ -86,10 +86,18 @@ const Utama = () => {
                   <td>{(page - 1) * limit + (i + 1)}</td>
                   <td>
                     <span className='flex gap-1'>
-                      <Button link={'/pendonor/datascreening'} className={'border border-dark'}>
+                      <Button
+                        link={'/pendonor/datascreening'}
+                        state={{ id_pendaftaran: v.id_pendaftaran }}
+                        className={'border border-dark'}
+                      >
                         <FontAwesomeIcon icon={'fas fa-check-double'} />
                       </Button>
-                      <Button link={'/pendonor/pemeriksaan'} className={'border border-dark'}>
+                      <Button
+                        link={'/pendonor/pemeriksaan'}
+                        state={{ id_pendaftaran: v.id_pendaftaran }}
+                        className={'border border-dark'}
+                      >
                         <FontAwesomeIcon icon={'fas fa-stethoscope'} />
                       </Button>
                     </span>

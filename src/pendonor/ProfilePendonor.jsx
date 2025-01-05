@@ -101,6 +101,17 @@ const ProfilePendonor = () => {
     return formattedDate;
   };
 
+  const deleteData = async (id) => {
+    console.log(id);
+    try {
+      const res = await axios.delete('https://sidede-api.vercel.app/hakakses');
+      alert(res.data.result);
+    } catch (err) {
+      console.error(err.message);
+      alert(err.response?.data.message);
+    }
+  };
+
   return (
     <div className='p-10'>
       <form onSubmit={handleSubmit(ubahProfile)} className='flex flex-col items-center gap-2'>
@@ -405,7 +416,9 @@ const ProfilePendonor = () => {
         />
 
         <div className={`flex gap-2 mt-5 ${!isDisabled && 'hidden'}`}>
-          <Button className={'bg-brand text-light'}>Hapus</Button>
+          <Button className={'bg-brand text-light'} onclick={() => deleteData(data.id_akses)}>
+            Hapus
+          </Button>
           <Button onclick={handleEnable} className={'border border-dark'}>
             Ubah
           </Button>
