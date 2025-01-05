@@ -53,7 +53,7 @@ import Utama from '../pendonor/Utama';
 import ProfilePendonor from '../pendonor/ProfilePendonor';
 import DonorDarah from '../pendonor/DonorDarah';
 import Screening from '../pendonor/Screening';
-import ScreeningPendonor from '../pendonor/ScreeningPendonor';
+import ScreeningPendonor from '../pendonor/DataScreeningPendonor';
 import HasilPemeriksaan from '../pendonor/HasilPemeriksaan';
 
 import OfflinePage from '../OfflinePage';

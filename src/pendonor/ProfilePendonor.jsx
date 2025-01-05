@@ -57,9 +57,7 @@ const ProfilePendonor = () => {
 
   const ubahProfile = async (data) => {
     try {
-      // console.log(data);
       data.foto = data.foto && data.foto[0]?.name;
-      console.log(nik);
 
       const result = await axios.patch(`https://sidede-api.vercel.app/pendonor/${nik}`, data);
 
@@ -271,7 +269,7 @@ const ProfilePendonor = () => {
               id='tgl_lahir'
               placeholder={formatDate(data?.tgl_lahir)}
               type={isDisabled ? 'text' : 'date'}
-              className={'px-3 py-2 rounded-md w-full bg-white'}
+              className={'px-3 py-2 rounded-md w-full bg-white disabled:bg-light'}
               {...register('tgl_lahir')}
             />
             {errors.tgl_lahir && <p className='text-brand'>{errors.tgl_lahir.message}</p>}
