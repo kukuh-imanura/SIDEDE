@@ -53,8 +53,11 @@ const Landing = () => {
           <Button link='#Contact'>Kontak</Button>
 
           <span className='flex gap-2'>
-            <Button link={'/login'} className='bg-brand text-light'>
+            <Button link={'/login'} className='border border-dark'>
               Login
+            </Button>
+            <Button link={'/daftar'} className='text-center bg-brand text-light'>
+              Daftar
             </Button>
           </span>
         </nav>

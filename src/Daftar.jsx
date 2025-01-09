@@ -249,7 +249,7 @@ const Daftar = () => {
               <input
                 id='tgl_lahir'
                 type='date'
-                className='px-3 py-2 rounded-md'
+                className='px-3 py-2 rounded-md w-full bg-white'
                 {...register('tgl_lahir', {
                   required: 'wajib di isi',
                 })}
@@ -263,7 +263,7 @@ const Daftar = () => {
             <select
               name='pekerjaan'
               id='pekerjaan'
-              className='w-full px-3 py-2 rounded-md'
+              className='w-full px-3 py-2 rounded-md bg-white'
               {...register('pekerjaan', { required: 'pekerjaan wajib di isi' })}
             >
               <option value='' hidden>

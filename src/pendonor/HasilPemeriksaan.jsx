@@ -12,7 +12,7 @@ const HasilPemeriksaan = () => {
   const getData = async (id) => {
     try {
       const res = await axios.get(`https://sidede-api.vercel.app/pemeriksaan?id_pendaftaran=${id}`);
-      setData(res.data.result[0]);
+      setData(res.data ? res.data.result[0] : {});
     } catch (err) {
       console.error(err.message);
       alert(err.response?.data.message);
